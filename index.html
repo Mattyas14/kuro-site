@@ -125,6 +125,34 @@ footer{padding:35px 0;color:#777175;font-size:.78rem}.foot{display:flex;justify-
   border-color: rgba(220, 20, 60, 0.65);
   box-shadow: 0 8px 28px rgba(220, 20, 60, 0.10);
 }
+
+/* KURO — navigation rouge sang */
+nav a {
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  background: #dc143c;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+  box-shadow: 0 0 10px rgba(220, 20, 60, 0.55);
+}
+
+nav a:hover {
+  color: #ff244b;
+}
+
+nav a:hover::after {
+  transform: scaleX(1);
+}
   
 </style>
 </head>
