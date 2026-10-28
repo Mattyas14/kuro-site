@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080809">
+<meta name="description" content="KURO — Community • Music • Night. Entre dans la face sombre de Tokyo.">
+<title>KURO | 黒 — Enter the dark side</title>
+<style>
+:root{--bg:#080809;--panel:#101012;--panel2:#151518;--white:#f4f2f2;--muted:#a4a0a2;--red:#dc143c;--red2:#ff244b;--line:#292629;--max:1180px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:85px}body{margin:0;background:var(--bg);color:var(--white);font-family:Inter,Arial,Helvetica,sans-serif;line-height:1.6;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 80% 10%,rgba(220,20,60,.11),transparent 32%),radial-gradient(ellipse at 10% 70%,rgba(220,20,60,.06),transparent 35%)}
+a{color:inherit;text-decoration:none}button{font:inherit}.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
+header{height:76px;position:fixed;inset:0 0 auto;z-index:20;background:rgba(8,8,9,.86);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav{height:100%;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font-weight:900;letter-spacing:.05em;font-size:1.35rem}.brand span{color:var(--red);margin-left:7px}.navlinks{display:flex;align-items:center;gap:27px;font-size:.82rem;color:#c6c1c3}.navlinks a{transition:color .2s}.navlinks a:hover,.navlinks a.active{color:var(--red2)}.navlinks a.active:after{content:"";display:block;height:2px;background:var(--red);margin-top:5px}
+.navright{display:flex;align-items:center;gap:10px}.moon{background:transparent;color:var(--white);border:1px solid var(--line);width:38px;height:38px;border-radius:50%;cursor:pointer}.menu{display:none;background:none;color:white;border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+.hero{min-height:720px;padding:140px 0 65px;display:flex;align-items:center;position:relative;isolation:isolate;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero:before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,#080809 0%,rgba(8,8,9,.92) 40%,rgba(8,8,9,.25) 100%),radial-gradient(ellipse at 78% 42%,rgba(220,20,60,.3),transparent 30%),linear-gradient(135deg,#111 0%,#080809 65%)}
+.hero:after{content:"黒";position:absolute;z-index:-1;right:8%;top:10%;font-size:clamp(15rem,35vw,31rem);font-weight:900;line-height:1;color:rgba(220,20,60,.06);writing-mode:vertical-rl}
+.eyebrow{color:var(--red2);font-size:.75rem;letter-spacing:.3em;font-weight:800;text-transform:uppercase}.hero h1{font-size:clamp(4.2rem,12vw,9.5rem);line-height:.9;letter-spacing:-.075em;margin:18px 0 22px;font-weight:950}.hero h1 .kanji{color:var(--red);font-size:.7em;letter-spacing:0}.hero p{color:#c2bfc1;max-width:490px;font-size:1.05rem}.hero p strong{color:white}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;border:1px solid var(--red);background:var(--red);color:white;font-weight:800;font-size:.82rem;letter-spacing:.04em;transition:transform .2s,background .2s;cursor:pointer;border-radius:3px}.btn:hover{transform:translateY(-2px);background:var(--red2)}.btn.secondary{background:transparent;border-color:#494348}.btn.secondary:hover{border-color:var(--red)}.hero-meta{display:flex;gap:20px;flex-wrap:wrap;margin-top:45px;color:#8e888b;font-size:.72rem;letter-spacing:.12em}.hero-meta span:before{content:"◆";color:var(--red);font-size:.6rem;margin-right:8px}
+.section{padding:88px 0;border-bottom:1px solid var(--line)}.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:30px}.kicker{color:var(--red);font-size:.73rem;letter-spacing:.22em;font-weight:800}.section h2{font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;margin:9px 0 0;letter-spacing:-.045em}.section-intro{max-width:440px;color:var(--muted);font-size:.93rem}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.tile{position:relative;min-height:220px;padding:25px;background:linear-gradient(145deg,#151416,#0c0c0e);border:1px solid var(--line);overflow:hidden;transition:border-color .2s,transform .2s}.tile:hover{border-color:var(--red);transform:translateY(-3px)}.tile:after{content:attr(data-mark);position:absolute;right:10px;bottom:-30px;font-size:9rem;line-height:1;font-weight:900;color:rgba(220,20,60,.08)}.tile .num{color:var(--red);font-size:.72rem;letter-spacing:.18em}.tile h3{font-size:1.35rem;margin:15px 0 8px}.tile p{font-size:.88rem;color:var(--muted);max-width:300px}.tile a{display:inline-block;margin-top:12px;font-size:.78rem;color:#fff;border-bottom:1px solid var(--red);padding-bottom:3px}
+.music-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;align-items:stretch}.music-feature{min-height:300px;padding:30px;border:1px solid var(--line);background:radial-gradient(ellipse at 80% 25%,rgba(220,20,60,.25),transparent 40%),linear-gradient(145deg,#161518,#0b0b0c);display:flex;flex-direction:column;justify-content:space-between}.music-feature .big-kanji{font-size:5.5rem;line-height:1;color:rgba(220,20,60,.8);font-weight:900}.playlist-list{display:grid;gap:10px}.playlist{display:flex;align-items:center;gap:15px;border:1px solid var(--line);background:#0d0d0f;padding:15px;min-height:88px}.cover{width:56px;height:56px;flex-shrink:0;display:grid;place-items:center;background:linear-gradient(135deg,#171719,#5d071a);border:1px solid #49202b;font-size:1.35rem}.playlist h3{font-size:.95rem;margin:0}.playlist p{font-size:.78rem;color:var(--muted);margin:3px 0 0}.playlist .arrow{margin-left:auto;color:var(--red);font-size:1.4rem}
+.community{display:grid;grid-template-columns:1fr 1fr;gap:22px}.community-box{padding:28px;border:1px solid var(--line);background:var(--panel)}.statrow{display:flex;gap:25px;margin:25px 0}.stat strong{display:block;font-size:1.4rem}.stat span{font-size:.75rem;color:var(--muted)}.factions{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}.faction{text-align:center;padding:17px 8px;background:#0b0b0d;border:1px solid var(--line)}.sigil{font-size:1.8rem;color:var(--red)}.faction strong{display:block;font-size:.7rem;letter-spacing:.08em}.faction small{color:var(--muted);font-size:.68rem}
+.terminal{background:#050506;border:1px solid #4b1724;box-shadow:0 0 35px rgba(220,20,60,.08)}.termbar{padding:12px 15px;border-bottom:1px solid #32111a;color:var(--red);font-size:.76rem;letter-spacing:.1em}.termcontent{padding:20px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.85rem;color:#c8c2c5;min-height:180px}.termcontent p{margin:7px 0}.termcontent .prompt{color:var(--red)}.termform{display:flex;gap:8px;padding:0 20px 18px}.termform input{min-width:0;flex:1;background:#111;color:white;border:1px solid #3a3034;padding:10px;font-family:monospace}.termform button{background:var(--red);color:white;border:0;padding:0 15px;cursor:pointer}
+.ranks{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.rank{padding:18px 12px;background:#101012;border:1px solid var(--line)}.rank .r{font-size:.7rem;color:var(--red);letter-spacing:.15em}.rank h3{font-size:.85rem;margin:10px 0 4px}.rank p{font-size:.76rem;color:var(--muted);margin:0}
+footer{padding:35px 0;color:#777175;font-size:.78rem}.foot{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}.foot strong{color:#eee}.foot .jp{color:var(--red)}
+.toast{position:fixed;bottom:20px;right:20px;background:#171417;border:1px solid var(--red);padding:13px 18px;max-width:calc(100% - 40px);z-index:50;box-shadow:0 8px 30px #000;display:none}.toast.show{display:block;animation:fade .25s ease}@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}.glitch:hover{animation:glitch .22s linear 2}@keyframes glitch{0%{text-shadow:2px 0 var(--red)}50%{text-shadow:-2px 0 white;transform:translateX(1px)}100%{text-shadow:0 0 var(--red);transform:none}}
+.light-mode{--bg:#eeeef0;--panel:#fff;--panel2:#e4e4e7;--white:#151416;--muted:#5d575a;--line:#d1cbd0}.light-mode header{background:rgba(238,238,240,.9)}.light-mode .tile,.light-mode .playlist,.light-mode .community-box,.light-mode .rank{background:#fff}.light-mode .music-feature{background:linear-gradient(145deg,#fff,#e7e3e5)}.light-mode .termcontent{color:#ddd}.light-mode .hero:before{background:linear-gradient(90deg,#eeeef0 0%,rgba(238,238,240,.93) 45%,rgba(238,238,240,.5) 100%),radial-gradient(ellipse at 78% 42%,rgba(220,20,60,.2),transparent 30%)}.light-mode .hero p{color:#454045}.light-mode .hero-meta{color:#5d575a}
+@media(max-width:800px){.navlinks{gap:13px}.hero{min-height:650px}.grid{grid-template-columns:1fr 1fr}.music-layout,.community{grid-template-columns:1fr}.ranks{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.wrap{width:min(var(--max),calc(100% - 28px))}header{height:66px}.navlinks{display:none;position:absolute;top:66px;left:0;right:0;background:#0b0b0d;padding:20px;flex-direction:column;align-items:stretch;border-bottom:1px solid var(--line)}.navlinks.open{display:flex}.navlinks a{padding:7px 0}.menu{display:block}.hero{min-height:650px;padding-top:115px}.hero h1{font-size:clamp(4rem,19vw,6rem)}.hero:after{right:-10%;top:25%;font-size:18rem}.section{padding:65px 0}.section-head{display:block}.section-intro{margin-top:15px}.grid{grid-template-columns:1fr}.tile{min-height:180px}.factions{grid-template-columns:repeat(2,1fr)}.ranks{grid-template-columns:repeat(2,1fr)}.statrow{gap:15px}.music-feature{min-height:250px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand glitch" href="#accueil" aria-label="KURO accueil">KURO <span>| 黒</span></a>
+    <nav class="navlinks" id="navlinks" aria-label="Navigation principale">
+      <a href="#accueil" class="active">Accueil</a><a href="#univers">Univers</a><a href="#musique">Musique</a><a href="#discord">Discord</a><a href="#exe">KURO.EXE</a><a href="#rangs">Rangs</a>
+    </nav>
+    <div class="navright"><button class="moon" id="themeBtn" aria-label="Changer de thème" title="Changer de thème">☾</button><button class="menu" id="menuBtn" aria-label="Ouvrir le menu">☰</button></div>
+  </div>
+</header>
+<main>
+<section class="hero" id="accueil">
+  <div class="wrap">
+    <div class="eyebrow">01 — Bienvenue dans l'ombre</div>
+    <h1 class="glitch">KURO <span class="kanji">黒</span></h1>
+    <p><strong>Deux faces. Une seule identité.</strong><br>Une communauté pour celles et ceux qui vivent la nuit : musique, gaming et univers sombre inspiré du Japon.</p>
+    <div class="actions"><a class="btn" href="#discord">◈ &nbsp; REJOINDRE KURO <span>↗</span></a><a class="btn secondary" href="#univers">EXPLORER L'UNIVERS ↓</a></div>
+    <div class="hero-meta"><span>COMMUNITY</span><span>MUSIC</span><span>NIGHT</span><span>東京 / TOKYO</span></div>
+  </div>
+</section>
+<section class="section" id="univers"><div class="wrap">
+  <div class="section-head"><div><div class="kicker">01 / L'UNIVERS</div><h2>Entre dans <span style="color:var(--red)">l'ombre.</span></h2></div><p class="section-intro">KURO est un univers communautaire à construire ensemble. Explore ses différentes facettes et trouve ta place dans la nuit.</p></div>
+  <div class="grid">
+    <article class="tile" data-mark="黒"><div class="num">01 — COMMUNITY</div><h3>Une autre famille.</h3><p>Rencontre la communauté, partage tes projets et participe à la vie de KURO.</p><a href="#discord">DÉCOUVRIR LA COMMUNAUTÉ ↗</a></article>
+    <article class="tile" data-mark="夜"><div class="num">02 — MUSIC</div><h3>Le son de la nuit.</h3><p>Des playlists sombres, des basses, du techno et des morceaux qui ont une âme.</p><a href="#musique">ÉCOUTER KURO SOUND ↗</a></article>
+    <article class="tile" data-mark="影"><div class="num">03 — DIGITAL</div><h3>KURO.EXE</h3><p>Une expérience interactive : terminal, thèmes visuels et petites commandes cachées.</p><a href="#exe">LANCER L'INTERFACE ↗</a></article>
+  </div>
+</div></section>
+<section class="section" id="musique"><div class="wrap">
+  <div class="section-head"><div><div class="kicker">02 / MUSIQUE</div><h2>KURO <span style="color:var(--red)">SOUND</span></h2></div><p class="section-intro">La bande-son de Tokyo après minuit. Remplace les liens de démonstration par tes playlists Spotify.</p></div>
+  <div class="music-layout">
+    <div class="music-feature"><div><div class="kicker">LISTEN AFTER DARK</div><h3 style="font-size:1.8rem;line-height:1.15;margin:14px 0">Chaque nuit<br>a son propre son.</h3><p style="color:var(--muted);max-width:300px">Du calme étrange aux nuits qui cognent. Trouve ton ambiance.</p></div><div class="big-kanji">音楽</div><a class="btn" href="#playlists" onclick="showToast('Ajoute tes vrais liens Spotify dans index.html pour activer les playlists.')">DÉCOUVRIR LES PLAYLISTS ↗</a></div>
+    <div class="playlist-list" id="playlists">
+      <a class="playlist" href="https://open.spotify.com/playlist/4kFeRscpNwfBac0N8QcPSA?si=rXOc2UHuT72s87PfMeMe4A" target="_blank" rel="noopener noreferrer"><div class="cover">黒</div><div><h3>KURO CORE</h3><p>L'essentiel. Le début.</p></div><span class="arrow">↗</span></a>
+      <a class="playlist" href="https://open.spotify.com/playlist/2KM84j4YhBxsO24oVBVzmr?si=S9OabQnqTNOIkqWeuAeJwQ" target="_blank" rel="noopener noreferrer"><div class="cover">夜</div><div><h3>TOKYO AFTER DARK</h3><p>La ville. Pluie intense. Néons.</p></div><span class="arrow">↗</span></a>
+      <a class="playlist" href="#musique" onclick="showToast('Le lien Spotify de Cleaning × Techno sera ajouté plus tard.')"><div class="cover">影</div><div><h3>CLEANING × TECHNO</h3><p>Le chaos, mais avec du rythme.</p></div><span class="arrow">↗</span></a>
+    </div>
+  </div>
+</div></section>
+<section class="section" id="discord"><div class="wrap">
+  <div class="section-head"><div><div class="kicker">03 / DISCORD</div><h2>Rejoins la <span style="color:var(--red)">communauté.</span></h2></div><p class="section-intro">Un serveur à l'image de KURO : sombre, accueillant et construit autour de ses membres.</p></div>
+  <div class="community">
+    <div class="community-box"><div class="kicker">THE GATE IS OPEN</div><h3 style="font-size:1.7rem;margin:10px 0">Ta place est peut-être ici.</h3><p style="color:var(--muted)">Gaming, musique, discussions et projets : passe la porte et découvre le serveur.</p><div class="statrow"><div class="stat"><strong>KURO</strong><span>Une identité</span></div><div class="stat"><strong>∞</strong><span>Possibilités</span></div><div class="stat"><strong>黒</strong><span>La nuit</span></div></div><a class="btn" href="https://discord.gg/stbTbMZKtw" target="_blank" rel="noopener noreferrer" id="discordBtn">◈ &nbsp; REJOINDRE LE SERVEUR ↗</a><p style="font-size:.72rem;color:var(--muted)">Le portail KURO est ouvert.</p></div>
+    <div class="community-box"><div class="kicker">FACTIONS / 陣営</div><h3 style="margin:10px 0">Choisis ta voie.</h3><p style="color:var(--muted)">Concept visuel de départ — adapte les factions à celles de ton serveur.</p><div class="factions"><div class="faction"><div class="sigil">◇</div><strong>HUMAIN</strong><small>Équilibre</small></div><div class="faction"><div class="sigil">鬼</div><strong>GHOUL</strong><small>Puissance</small></div><div class="faction"><div class="sigil">✧</div><strong>ENQUÊTEUR</strong><small>Protection</small></div><div class="faction"><div class="sigil">影</div><strong>KURO</strong><small>L'ombre</small></div></div></div>
+  </div>
+</div></section>
+<section class="section" id="exe"><div class="wrap">
+  <div class="section-head"><div><div class="kicker">04 / INTERFACE EXPÉRIMENTALE</div><h2>Lance <span style="color:var(--red)">KURO.EXE</span></h2></div><p class="section-intro">Un petit terminal local pour explorer l'univers. Les commandes ne contrôlent pas Discord et ne modifient aucun compte.</p></div>
+  <div class="terminal"><div class="termbar">● &nbsp; KURO.EXE — TERMINAL LOCAL <span style="float:right">v1.0.0</span></div><div class="termcontent" id="termcontent" aria-live="polite"><p><span class="prompt">›</span> Initialisation de l'interface...</p><p><span class="prompt">›</span> Chargement des données KURO...</p><p><span class="prompt">›</span> Bienvenue dans l'ombre.</p><p style="color:#777">Tape <span style="color:var(--red)">help</span> pour afficher les commandes.</p></div><form class="termform" id="termform"><input id="termInput" autocomplete="off" aria-label="Commande terminal" placeholder="entre une commande…"><button type="submit">EXEC ↵</button></form></div>
+</div></section>
+<section class="section" id="rangs"><div class="wrap">
+  <div class="section-head"><div><div class="kicker">05 / PROGRESSION</div><h2>Évolue dans <span style="color:var(--red)">KURO.</span></h2></div><p class="section-intro">Un aperçu des paliers de progression. Les seuils affichés sont des exemples à vérifier avec la configuration réelle de ton serveur.</p></div>
+  <div class="ranks">
+    <article class="rank"><div class="r">LVL 05</div><h3>INITIÉ KURO</h3><p>La première porte.</p></article>
+    <article class="rank"><div class="r">LVL 10</div><h3>KURO ÉVEILLÉ</h3><p>Les ombres s'ouvrent.</p></article>
+    <article class="rank"><div class="r">LVL 20</div><h3>KURO ÉLITE</h3><p>Ta présence se remarque.</p></article>
+    <article class="rank"><div class="r">LVL 35</div><h3>KURO VÉTÉRAN</h3><p>La nuit te connaît.</p></article>
+    <article class="rank"><div class="r">LVL 50</div><h3>NIGHT LEGEND</h3><p>Une légende se dessine.</p></article>
+  </div>
+</div></section>
+</main>
+<footer><div class="wrap foot"><div><strong>KURO <span class="jp">| 黒</span></strong> — Community • Music • Night</div><div>Fait dans l'ombre. <span class="jp">もっと深くへ。</span></div><div>© <span id="year"></span> KURO. Tous droits réservés.</div></div></footer>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const navlinks=document.getElementById('navlinks');
+document.getElementById('menuBtn').addEventListener('click',()=>navlinks.classList.toggle('open'));
+navlinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navlinks.classList.remove('open');navlinks.querySelectorAll('a').forEach(x=>x.classList.remove('active'));a.classList.add('active')}));
+document.getElementById('themeBtn').addEventListener('click',()=>{document.body.classList.toggle('light-mode');showToast(document.body.classList.contains('light-mode')?'Mode clair activé.':'Retour dans l’ombre.')});
+document.getElementById('year').textContent=new Date().getFullYear();
+let toastTimer;function showToast(message){const t=document.getElementById('toast');t.textContent=message;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),3600)}
+const form=document.getElementById('termform'),input=document.getElementById('termInput'),term=document.getElementById('termcontent');
+function line(txt,cls=''){const p=document.createElement('p');if(cls){const s=document.createElement('span');s.className=cls;s.textContent='› ';p.appendChild(s)}p.appendChild(document.createTextNode(txt));term.appendChild(p);term.scrollTop=term.scrollHeight}
+form.addEventListener('submit',e=>{e.preventDefault();const cmd=input.value.trim().toLowerCase();if(!cmd)return;line(cmd,'prompt');input.value='';
+const commands={
+help:['Commandes disponibles :','help — afficher cette aide','about — découvrir KURO','music — afficher les playlists','factions — voir les factions','clear — nettoyer le terminal','date — afficher la date locale'],
+about:['KURO | 黒','Deux faces. Une seule identité.','Community • Music • Night'],
+music:['KURO CORE — Spotify connecté','TOKYO AFTER DARK — Spotify connecté','CLEANING × TECHNO — lien à ajouter plus tard'],
+factions:['HUMAIN — Équilibre','GHOUL — Puissance','ENQUÊTEUR — Protection','KURO — L’ombre'],
+date:[new Date().toLocaleString('fr-FR')],
+clear:[]
+};
+if(cmd==='clear'){term.innerHTML='';return}
+if(commands[cmd])commands[cmd].forEach(t=>line(t));else line('Commande inconnue. Tape help pour la liste.');});
+</script>
+</body>
+</html>
