@@ -261,5 +261,101 @@ clear:[]
 if(cmd==='clear'){term.innerHTML='';return}
 if(commands[cmd])commands[cmd].forEach(t=>line(t));else line('Commande inconnue. Tape help pour la liste.');});
 </script>
+
+<!-- KURO — particules rouge sang -->
+<canvas id="kuro-particles" aria-hidden="true"></canvas>
+
+<style>
+  #kuro-particles {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.45;
+  }
+
+  #kuro-particles {
+    position: fixed !important;
+  }
+</style>
+
+<script>
+(() => {
+  const canvas = document.getElementById("kuro-particles");
+  if (!canvas) return;
+
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  let width = 0;
+  let height = 0;
+  let particles = [];
+  let animationId;
+
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = window.innerWidth;
+    height = window.innerHeight;
+
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const count = Math.min(38, Math.floor(width / 32));
+
+    particles = Array.from({ length: count }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      r: 0.7 + Math.random() * 1.4,
+      speed: 0.12 + Math.random() * 0.25,
+      drift: (Math.random() - 0.5) * 0.18,
+      alpha: 0.2 + Math.random() * 0.45
+    }));
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, width, height);
+
+    for (const p of particles) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(220, 20, 60, ${p.alpha})`;
+      ctx.shadowBlur = 7;
+      ctx.shadowColor = "rgba(220, 20, 60, 0.35)";
+      ctx.fill();
+
+      p.y -= p.speed;
+      p.x += p.drift;
+
+      if (p.y < -5) {
+        p.y = height + 5;
+        p.x = Math.random() * width;
+      }
+
+      if (p.x < -5) p.x = width + 5;
+      if (p.x > width + 5) p.x = -5;
+    }
+
+    ctx.shadowBlur = 0;
+    animationId = requestAnimationFrame(draw);
+  }
+
+  resize();
+  window.addEventListener("resize", resize);
+
+  if (!reduceMotion) {
+    draw();
+  } else {
+    draw();
+    cancelAnimationFrame(animationId);
+  }
+})();
+</script>
 </body>
 </html>
