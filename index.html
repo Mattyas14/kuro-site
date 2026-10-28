@@ -84,6 +84,29 @@ footer{padding:35px 0;color:#777175;font-size:.78rem}.foot{display:flex;justify-
   letter-spacing: 1px;
   text-shadow: 0 0 12px rgba(220, 20, 60, 0.12);
 }
+
+/* KURO SOUND — pulsation nocturne */
+@keyframes kuroPulse {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(220, 20, 60, 0.06);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(220, 20, 60, 0.14);
+  }
+}
+
+.spotify-embeds iframe {
+  animation: kuroPulse 5s ease-in-out infinite;
+}
+
+.spotify-embeds h3 {
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.spotify-embeds h3:hover {
+  color: #ff4668;
+  text-shadow: 0 0 14px rgba(220, 20, 60, 0.35);
+}
   
 </style>
 </head>
