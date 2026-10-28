@@ -29,6 +29,42 @@ footer{padding:35px 0;color:#777175;font-size:.78rem}.foot{display:flex;justify-
 .light-mode{--bg:#eeeef0;--panel:#fff;--panel2:#e4e4e7;--white:#151416;--muted:#5d575a;--line:#d1cbd0}.light-mode header{background:rgba(238,238,240,.9)}.light-mode .tile,.light-mode .playlist,.light-mode .community-box,.light-mode .rank{background:#fff}.light-mode .music-feature{background:linear-gradient(145deg,#fff,#e7e3e5)}.light-mode .termcontent{color:#ddd}.light-mode .hero:before{background:linear-gradient(90deg,#eeeef0 0%,rgba(238,238,240,.93) 45%,rgba(238,238,240,.5) 100%),radial-gradient(ellipse at 78% 42%,rgba(220,20,60,.2),transparent 30%)}.light-mode .hero p{color:#454045}.light-mode .hero-meta{color:#5d575a}
 @media(max-width:800px){.navlinks{gap:13px}.hero{min-height:650px}.grid{grid-template-columns:1fr 1fr}.music-layout,.community{grid-template-columns:1fr}.ranks{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:600px){.wrap{width:min(var(--max),calc(100% - 28px))}header{height:66px}.navlinks{display:none;position:absolute;top:66px;left:0;right:0;background:#0b0b0d;padding:20px;flex-direction:column;align-items:stretch;border-bottom:1px solid var(--line)}.navlinks.open{display:flex}.navlinks a{padding:7px 0}.menu{display:block}.hero{min-height:650px;padding-top:115px}.hero h1{font-size:clamp(4rem,19vw,6rem)}.hero:after{right:-10%;top:25%;font-size:18rem}.section{padding:65px 0}.section-head{display:block}.section-intro{margin-top:15px}.grid{grid-template-columns:1fr}.tile{min-height:180px}.factions{grid-template-columns:repeat(2,1fr)}.ranks{grid-template-columns:repeat(2,1fr)}.statrow{gap:15px}.music-feature{min-height:250px}}
+
+/* KURO SOUND — rouge sang */
+.spotify-embeds {
+  gap: 22px;
+}
+
+.spotify-embed-card {
+  background: linear-gradient(145deg, #151012, #090909);
+  border: 1px solid #3a1720;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 18px rgba(220, 20, 60, 0.07);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.spotify-embed-card:hover {
+  border-color: #dc143c;
+  box-shadow: 0 0 22px rgba(220, 20, 60, 0.16);
+}
+
+.spotify-embed-card h3 {
+  color: #ff244b;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.spotify-embed-card iframe {
+  display: block;
+  border: 1px solid #292329 !important;
+  border-radius: 10px;
+}
+
+.big-kanji {
+  text-shadow: 0 0 24px rgba(220, 20, 60, 0.15);
+}
+
 </style>
 </head>
 <body>
