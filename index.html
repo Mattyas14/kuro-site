@@ -153,6 +153,28 @@ nav a:hover {
 nav a:hover::after {
   transform: scaleX(1);
 }
+
+/* KURO — apparition progressive */
+.kuro-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+.kuro-reveal.kuro-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kuro-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
   
 </style>
 </head>
@@ -355,6 +377,33 @@ if(commands[cmd])commands[cmd].forEach(t=>line(t));else line('Commande inconnue.
     draw();
     cancelAnimationFrame(animationId);
   }
+})();
+</script>
+
+<script>
+(() => {
+  const sections = document.querySelectorAll(
+    "main section, body > section"
+  );
+
+  if (!("IntersectionObserver" in window)) return;
+
+  sections.forEach(section => {
+    section.classList.add("kuro-reveal");
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("kuro-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12
+  });
+
+  sections.forEach(section => observer.observe(section));
 })();
 </script>
 </body>
