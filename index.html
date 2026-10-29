@@ -897,7 +897,53 @@ nav a:hover::after {
     width: 95px;
   }
 }
+/* KURO — ajustements finaux du hero */
+.hero-side-label {
+  left: 24px;
+  width: 125px;
+  font-size: 0.72rem;
+  overflow-wrap: anywhere;
+}
 
+.hero > .wrap {
+  width: min(1120px, calc(100% - 48px));
+}
+
+.hero h1 {
+  font-size: clamp(4rem, 9vw, 8rem);
+}
+
+.hero:after {
+  right: 7%;
+  top: 12%;
+  font-size: clamp(14rem, 27vw, 23rem);
+  opacity: 0.55;
+}
+
+.hero-scene:after {
+  right: 16%;
+  top: 16%;
+  width: clamp(100px, 13vw, 165px);
+  opacity: 0.7;
+}
+
+@media (min-width: 1001px) {
+  .hero-side-label {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: clamp(3rem, 13vw, 5rem);
+  }
+
+  .hero:after {
+    right: -18%;
+    top: 24%;
+    font-size: 14rem;
+  }
+}
 </style>
 </head>
 <body>
