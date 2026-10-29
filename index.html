@@ -1061,6 +1061,42 @@ nav a:hover::after {
   }
 }
 
+/* KURO — réparation du décalage horizontal */
+#accueil {
+  overflow: hidden;
+}
+
+#accueil > .wrap {
+  width: min(1120px, calc(100% - 48px));
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+#accueil h1 {
+  max-width: 100%;
+  font-size: clamp(3.5rem, 8.5vw, 8rem);
+  overflow-wrap: normal;
+}
+
+#accueil .hero-side-label {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  #accueil > .wrap {
+    width: calc(100% - 36px);
+  }
+
+  #accueil h1 {
+    font-size: clamp(2.8rem, 12vw, 4.5rem);
+  }
+
+  #accueil .actions {
+    flex-wrap: wrap;
+  }
+}
+
 </style>
 </head>
 <body>
