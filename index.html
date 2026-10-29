@@ -734,219 +734,235 @@ nav a:hover::after {
 }
   
 
-/* ===== KURO — CORRECTION DE L'ACCUEIL ===== */
-.hero {
-  display: flex;
-  align-items: center;
+/* ===== KURO UNIVERS — CINÉMATIQUE + INTERACTIF ===== */
+#univers {
   position: relative;
   isolation: isolate;
   overflow: hidden;
+  background:
+    radial-gradient(ellipse at 8% 48%, rgba(220,20,60,.075), transparent 34%),
+    linear-gradient(180deg, #09090b 0%, #0b090b 100%);
 }
 
-.hero > .wrap {
-  position: relative;
-  z-index: 2;
-  width: min(var(--max), calc(100% - 48px));
-  margin-inline: auto;
-}
-
-.hero h1 {
-  max-width: 100%;
-  font-size: clamp(3.8rem, 9vw, 8rem);
-  line-height: .98;
-  letter-spacing: -.065em;
-  overflow-wrap: normal;
-}
-
-.hero h1 .kanji {
-  font-size: .62em;
-}
-
-.hero p {
-  max-width: 540px;
-  line-height: 1.65;
-}
-
-.hero-side-label {
+#univers::before {
+  content: "東京";
   position: absolute;
-  left: 24px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-  width: 140px;
-  color: #d7d1d4;
-  font-size: .78rem;
-  line-height: 1.7;
-  overflow-wrap: break-word;
-}
-
-.hero-side-label span {
-  color: var(--red2);
-}
-
-.hero-index {
-  position: absolute;
-  left: 24px;
-  bottom: 25px;
-  z-index: 2;
-  max-width: 180px;
-  color: #d7d1d4;
-  font-size: .78rem;
-}
-
-.scroll-cue {
-  position: absolute;
-  right: 24px;
-  bottom: 25px;
-  z-index: 2;
-  max-width: 170px;
-  color: #d7d1d4;
-  font-size: .68rem;
-  letter-spacing: .12em;
-  text-align: right;
-}
-
-.hero-scene {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
+  top: 70px;
+  right: -18px;
+  z-index: -1;
+  color: rgba(220,20,60,.035);
+  font-size: clamp(8rem, 22vw, 19rem);
+  font-weight: 900;
+  line-height: 1;
+  writing-mode: vertical-rl;
   pointer-events: none;
 }
 
-@media (max-width: 1000px) {
-  .hero-side-label {
-    display: none;
+#univers .section-head {
+  align-items: end;
+  margin-bottom: 42px;
+}
+
+#univers .kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#univers .kicker::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--red2);
+  box-shadow: 0 0 10px rgba(255,36,75,.6);
+}
+
+#univers .grid {
+  gap: 18px;
+  align-items: stretch;
+}
+
+#univers .tile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 310px;
+  padding: 28px 25px 24px;
+  border-color: #302329;
+  background:
+    linear-gradient(145deg, rgba(24,17,21,.96), rgba(9,9,11,.98) 72%),
+    #0b0b0d;
+  box-shadow: inset 0 1px rgba(255,255,255,.025);
+  transition:
+    transform .28s ease,
+    border-color .28s ease,
+    box-shadow .28s ease,
+    background .28s ease;
+}
+
+#univers .tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 20%, rgba(220,20,60,.12) 50%, transparent 72%);
+  transform: translateX(-120%);
+  transition: transform .65s ease;
+  pointer-events: none;
+}
+
+#univers .tile::after {
+  right: 8px;
+  bottom: -26px;
+  color: rgba(220,20,60,.075);
+  font-size: 9.5rem;
+  transition: color .28s ease, transform .4s ease;
+  pointer-events: none;
+}
+
+#univers .tile:hover,
+#univers .tile:focus-within {
+  transform: translateY(-8px);
+  border-color: rgba(255,36,75,.8);
+  box-shadow: 0 18px 45px rgba(0,0,0,.3), 0 0 28px rgba(220,20,60,.08);
+  background: linear-gradient(145deg, #1a1015, #0b0a0c 75%);
+}
+
+#univers .tile:hover::before,
+#univers .tile:focus-within::before {
+  transform: translateX(120%);
+}
+
+#univers .tile:hover::after,
+#univers .tile:focus-within::after {
+  color: rgba(220,20,60,.15);
+  transform: translate(-4px, -5px) scale(1.04);
+}
+
+#univers .tile-topline {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+
+#univers .tile .num {
+  font-size: .68rem;
+  letter-spacing: .16em;
+}
+
+#univers .tile-status {
+  color: #8f858a;
+  font-size: .58rem;
+  letter-spacing: .14em;
+  white-space: nowrap;
+}
+
+#univers .tile-status::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin: 0 7px 1px 0;
+  border-radius: 50%;
+  background: var(--red2);
+  box-shadow: 0 0 9px rgba(255,36,75,.7);
+}
+
+#univers .tile-symbol {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  margin: 23px 0 5px;
+  border: 1px solid rgba(220,20,60,.38);
+  background: rgba(220,20,60,.06);
+  color: var(--red2);
+  font-size: 1.8rem;
+  transition: transform .28s ease, background .28s ease, box-shadow .28s ease;
+}
+
+#univers .tile:hover .tile-symbol,
+#univers .tile:focus-within .tile-symbol {
+  transform: rotate(-6deg) scale(1.06);
+  background: rgba(220,20,60,.13);
+  box-shadow: 0 0 22px rgba(220,20,60,.12);
+}
+
+#univers .tile h3 {
+  position: relative;
+  z-index: 1;
+  margin: 12px 0 7px;
+  font-size: 1.32rem;
+}
+
+#univers .tile p {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  line-height: 1.7;
+  max-width: 320px;
+}
+
+#univers .tile a {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 24px;
+  border: 0;
+  color: #f5f1f2;
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+}
+
+#univers .tile a span {
+  display: inline-block;
+  color: var(--red2);
+  transition: transform .2s ease;
+}
+
+#univers .tile a:hover span,
+#univers .tile a:focus-visible span {
+  transform: translate(4px, -2px);
+}
+
+#univers .tile a:focus-visible {
+  outline: 2px solid var(--red2);
+  outline-offset: 5px;
+}
+
+@media (max-width: 800px) {
+  #univers .grid {
+    grid-template-columns: 1fr;
   }
 
-  .hero-index {
-    left: 24px;
-    bottom: 22px;
-  }
-
-  .scroll-cue {
-    right: 24px;
-    bottom: 22px;
+  #univers .tile {
+    min-height: 270px;
   }
 }
 
-@media (max-width: 600px) {
-  .hero {
-    min-height: 680px;
-    padding: 115px 0 105px;
+@media (prefers-reduced-motion: reduce) {
+  #univers .tile,
+  #univers .tile::before,
+  #univers .tile::after,
+  #univers .tile-symbol,
+  #univers .tile a span {
+    transition: none;
   }
 
-  .hero > .wrap {
-    width: calc(100% - 36px);
-  }
-
-  .hero h1 {
-    font-size: clamp(3rem, 13vw, 5.2rem);
-    line-height: 1;
-    letter-spacing: -.07em;
-  }
-
-  .hero h1 .kanji {
-    font-size: .48em;
-  }
-
-  .hero p {
-    font-size: .96rem;
-  }
-
-  .hero .actions {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
-  }
-
-  .hero .actions .btn {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .hero-index {
-    left: 18px;
-    bottom: 16px;
-    max-width: 48%;
-    font-size: .62rem;
-  }
-
-  .scroll-cue {
-    right: 18px;
-    bottom: 16px;
-    max-width: 42%;
-    font-size: .55rem;
-  }
-
-  .hero:after {
-    right: -20%;
-    top: 25%;
-    font-size: 14rem;
-    opacity: .7;
-  }
-
-  .hero-scene:before {
-    width: 100%;
-    opacity: .28;
-  }
-
-  .hero-scene:after {
-    right: 8%;
-    top: 18%;
-    width: 95px;
-  }
-}
-/* KURO — ajustements finaux du hero */
-.hero-side-label {
-  left: 24px;
-  width: 125px;
-  font-size: 0.72rem;
-  overflow-wrap: anywhere;
-}
-
-.hero > .wrap {
-  width: min(1120px, calc(100% - 48px));
-}
-
-.hero h1 {
-  font-size: clamp(4rem, 9vw, 8rem);
-}
-
-.hero:after {
-  right: 7%;
-  top: 12%;
-  font-size: clamp(14rem, 27vw, 23rem);
-  opacity: 0.55;
-}
-
-.hero-scene:after {
-  right: 16%;
-  top: 16%;
-  width: clamp(100px, 13vw, 165px);
-  opacity: 0.7;
-}
-
-@media (min-width: 1001px) {
-  .hero-side-label {
-    display: none;
+  #univers .tile:hover,
+  #univers .tile:focus-within {
+    transform: none;
   }
 }
 
-@media (max-width: 600px) {
-  .hero h1 {
-    font-size: clamp(3rem, 13vw, 5rem);
-  }
-
-  .hero:after {
-    right: -18%;
-    top: 24%;
-    font-size: 14rem;
-  }
-}
-.hero:after {
-  opacity: 0.3;
-}
 </style>
 </head>
 <body>
@@ -1012,9 +1028,27 @@ nav a:hover::after {
 <section class="section" id="univers"><div class="wrap">
   <div class="section-head"><div><div class="kicker">01 / L'UNIVERS</div><h2>Entre dans <span style="color:var(--red)">l'ombre.</span></h2></div><p class="section-intro">KURO est un univers communautaire à construire ensemble. Explore ses différentes facettes et trouve ta place dans la nuit.</p></div>
   <div class="grid">
-    <article class="tile" data-mark="黒"><div class="num">01 — COMMUNITY</div><h3>Une autre famille.</h3><p>Rencontre la communauté, partage tes projets et participe à la vie de KURO.</p><a href="#discord">DÉCOUVRIR LA COMMUNAUTÉ ↗</a></article>
-    <article class="tile" data-mark="夜"><div class="num">02 — MUSIC</div><h3>Le son de la nuit.</h3><p>Des playlists sombres, des basses, du techno et des morceaux qui ont une âme.</p><a href="#musique">ÉCOUTER KURO SOUND ↗</a></article>
-    <article class="tile" data-mark="影"><div class="num">03 — DIGITAL</div><h3>KURO.EXE</h3><p>Une expérience interactive : terminal, thèmes visuels et petites commandes cachées.</p><a href="#exe">LANCER L'INTERFACE ↗</a></article>
+    <article class="tile" data-mark="黒">
+      <div class="tile-topline"><div class="num">01 — COMMUNITY</div><span class="tile-status">PORTAIL OUVERT</span></div>
+      <div class="tile-symbol" aria-hidden="true">黒</div>
+      <h3>Une autre famille.</h3>
+      <p>Rencontre la communauté, partage tes projets et trouve ta place dans l'univers KURO.</p>
+      <a href="#discord">DÉCOUVRIR LA COMMUNAUTÉ <span>↗</span></a>
+    </article>
+    <article class="tile" data-mark="夜">
+      <div class="tile-topline"><div class="num">02 — MUSIC</div><span class="tile-status">SIGNAL AUDIO</span></div>
+      <div class="tile-symbol" aria-hidden="true">夜</div>
+      <h3>Le son de la nuit.</h3>
+      <p>Des basses profondes, des ambiances nocturnes et des morceaux pour chaque face de KURO.</p>
+      <a href="#musique">ENTRER DANS KURO SOUND <span>↗</span></a>
+    </article>
+    <article class="tile" data-mark="影">
+      <div class="tile-topline"><div class="num">03 — DIGITAL</div><span class="tile-status">INTERFACE ACTIVE</span></div>
+      <div class="tile-symbol" aria-hidden="true">影</div>
+      <h3>KURO.EXE</h3>
+      <p>Explore le terminal local, découvre ses commandes et plonge dans l'interface expérimentale.</p>
+      <a href="#exe">LANCER L'INTERFACE <span>↗</span></a>
+    </article>
   </div>
 </div></section>
 <section class="section" id="musique"><div class="wrap">
