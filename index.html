@@ -1097,6 +1097,152 @@ nav a:hover::after {
   }
 }
 
+
+/* ===== HOTFIX ROBUSTE — ACCUEIL KURO ===== */
+/* Le hero ne doit pas disposer ses enfants sur une ligne en flex. */
+#accueil {
+  display: block !important;
+  position: relative;
+  width: 100%;
+  min-height: 790px;
+  padding: 145px 0 85px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+#accueil > .wrap {
+  display: block;
+  width: min(1120px, calc(100% - 48px));
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+#accueil .eyebrow,
+#accueil h1,
+#accueil p,
+#accueil .actions,
+#accueil .hero-meta {
+  max-width: 100%;
+}
+
+#accueil h1 {
+  font-size: clamp(3.6rem, 8.5vw, 8rem) !important;
+  line-height: .98;
+  letter-spacing: -.065em;
+  white-space: normal;
+  overflow-wrap: normal;
+}
+
+#accueil h1 .kanji {
+  font-size: .62em;
+}
+
+#accueil p {
+  max-width: 540px;
+}
+
+#accueil .hero-side-label {
+  display: none !important;
+}
+
+#accueil .hero-index {
+  position: absolute;
+  left: 24px;
+  bottom: 25px;
+  z-index: 3;
+}
+
+#accueil .scroll-cue {
+  position: absolute;
+  right: 24px;
+  bottom: 25px;
+  z-index: 3;
+}
+
+#accueil:after {
+  opacity: .3 !important;
+  right: 7%;
+  top: 12%;
+  font-size: clamp(14rem, 27vw, 23rem);
+}
+
+#accueil .hero-scene:after {
+  right: 16%;
+  top: 16%;
+  width: clamp(100px, 13vw, 165px);
+}
+
+@media (max-width: 800px) {
+  #accueil {
+    min-height: 700px;
+    padding: 125px 0 105px;
+  }
+
+  #accueil > .wrap {
+    width: calc(100% - 36px);
+  }
+
+  #accueil h1 {
+    font-size: clamp(3rem, 12vw, 5.2rem) !important;
+  }
+
+  #accueil .actions {
+    gap: 10px;
+  }
+
+  #accueil .hero-index {
+    left: 18px;
+    bottom: 18px;
+    max-width: 46%;
+    font-size: .62rem;
+  }
+
+  #accueil .scroll-cue {
+    right: 18px;
+    bottom: 18px;
+    max-width: 43%;
+    font-size: .58rem;
+    text-align: right;
+  }
+
+  #accueil:after {
+    right: -18%;
+    top: 24%;
+    font-size: 14rem;
+  }
+
+  #accueil .hero-scene:after {
+    right: 8%;
+    top: 19%;
+    width: 105px;
+  }
+}
+
+@media (max-width: 480px) {
+  #accueil {
+    min-height: 720px;
+  }
+
+  #accueil h1 {
+    font-size: clamp(2.7rem, 11.5vw, 4rem) !important;
+  }
+
+  #accueil .actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #accueil .actions .btn {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
 </style>
 </head>
 <body>
