@@ -733,6 +733,171 @@ nav a:hover::after {
   }
 }
   
+
+/* ===== KURO — CORRECTION DE L'ACCUEIL ===== */
+.hero {
+  display: flex;
+  align-items: center;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.hero > .wrap {
+  position: relative;
+  z-index: 2;
+  width: min(var(--max), calc(100% - 48px));
+  margin-inline: auto;
+}
+
+.hero h1 {
+  max-width: 100%;
+  font-size: clamp(3.8rem, 9vw, 8rem);
+  line-height: .98;
+  letter-spacing: -.065em;
+  overflow-wrap: normal;
+}
+
+.hero h1 .kanji {
+  font-size: .62em;
+}
+
+.hero p {
+  max-width: 540px;
+  line-height: 1.65;
+}
+
+.hero-side-label {
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 140px;
+  color: #d7d1d4;
+  font-size: .78rem;
+  line-height: 1.7;
+  overflow-wrap: break-word;
+}
+
+.hero-side-label span {
+  color: var(--red2);
+}
+
+.hero-index {
+  position: absolute;
+  left: 24px;
+  bottom: 25px;
+  z-index: 2;
+  max-width: 180px;
+  color: #d7d1d4;
+  font-size: .78rem;
+}
+
+.scroll-cue {
+  position: absolute;
+  right: 24px;
+  bottom: 25px;
+  z-index: 2;
+  max-width: 170px;
+  color: #d7d1d4;
+  font-size: .68rem;
+  letter-spacing: .12em;
+  text-align: right;
+}
+
+.hero-scene {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+}
+
+@media (max-width: 1000px) {
+  .hero-side-label {
+    display: none;
+  }
+
+  .hero-index {
+    left: 24px;
+    bottom: 22px;
+  }
+
+  .scroll-cue {
+    right: 24px;
+    bottom: 22px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: 680px;
+    padding: 115px 0 105px;
+  }
+
+  .hero > .wrap {
+    width: calc(100% - 36px);
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 13vw, 5.2rem);
+    line-height: 1;
+    letter-spacing: -.07em;
+  }
+
+  .hero h1 .kanji {
+    font-size: .48em;
+  }
+
+  .hero p {
+    font-size: .96rem;
+  }
+
+  .hero .actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .hero .actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-index {
+    left: 18px;
+    bottom: 16px;
+    max-width: 48%;
+    font-size: .62rem;
+  }
+
+  .scroll-cue {
+    right: 18px;
+    bottom: 16px;
+    max-width: 42%;
+    font-size: .55rem;
+  }
+
+  .hero:after {
+    right: -20%;
+    top: 25%;
+    font-size: 14rem;
+    opacity: .7;
+  }
+
+  .hero-scene:before {
+    width: 100%;
+    opacity: .28;
+  }
+
+  .hero-scene:after {
+    right: 8%;
+    top: 18%;
+    width: 95px;
+  }
+}
+
 </style>
 </head>
 <body>
