@@ -963,6 +963,104 @@ nav a:hover::after {
   }
 }
 
+
+/* ===== FIX FINAL ACCUEIL KURO — conservé avec la section Univers ===== */
+@media (min-width: 1001px) {
+  .hero-side-label {
+    display: none !important;
+  }
+}
+
+.hero > .wrap {
+  width: min(1120px, calc(100% - 48px));
+  margin-inline: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.hero h1 {
+  font-size: clamp(4rem, 9vw, 8rem) !important;
+  line-height: .98;
+  letter-spacing: -.065em;
+}
+
+.hero h1 .kanji {
+  font-size: .62em;
+}
+
+.hero:after {
+  opacity: .3 !important;
+  right: 7%;
+  top: 12%;
+  font-size: clamp(14rem, 27vw, 23rem);
+}
+
+.hero-index {
+  left: 24px;
+  bottom: 25px;
+  z-index: 3;
+}
+
+.scroll-cue {
+  right: 24px;
+  bottom: 25px;
+  z-index: 3;
+}
+
+.hero-scene:after {
+  right: 16%;
+  top: 16%;
+  width: clamp(100px, 13vw, 165px);
+  opacity: .7;
+}
+
+@media (max-width: 1000px) {
+  .hero-side-label {
+    display: none !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: 680px;
+    padding: 115px 0 105px;
+  }
+
+  .hero > .wrap {
+    width: calc(100% - 36px);
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 13vw, 5rem) !important;
+    line-height: 1;
+    letter-spacing: -.07em;
+  }
+
+  .hero h1 .kanji {
+    font-size: .48em;
+  }
+
+  .hero:after {
+    right: -18%;
+    top: 24%;
+    font-size: 14rem;
+  }
+
+  .hero-index {
+    left: 18px;
+    bottom: 16px;
+    max-width: 48%;
+    font-size: .62rem;
+  }
+
+  .scroll-cue {
+    right: 18px;
+    bottom: 16px;
+    max-width: 42%;
+    font-size: .55rem;
+  }
+}
+
 </style>
 </head>
 <body>
