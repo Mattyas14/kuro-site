@@ -3336,6 +3336,300 @@ form.addEventListener('submit', e => {
     startKuroBoot();
   }
 })();
+
+<!-- ===== KURO : TOKYO AFTER DARK ===== -->
+<style>
+  #kuro-ambience {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 999;
+    width: min(310px, calc(100vw - 32px));
+    padding: 16px;
+    color: #eee7ea;
+    background: rgba(10, 8, 10, 0.96);
+    border: 1px solid rgba(240, 20, 69, 0.48);
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.4);
+    font-family: monospace;
+    backdrop-filter: blur(12px);
+  }
+
+  #kuro-ambience .ka-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 13px;
+  }
+
+  #kuro-ambience .ka-brand {
+    color: #f01445;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+  }
+
+  #kuro-ambience .ka-status {
+    color: #8e858a;
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  #kuro-ambience .ka-status span {
+    color: #f01445;
+  }
+
+  #kuro-ambience .ka-title {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+
+  #kuro-ambience .ka-subtitle {
+    margin-bottom: 15px;
+    color: #968b91;
+    font-size: 10px;
+    line-height: 1.6;
+  }
+
+  #kuro-ambience .ka-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  #kuro-ambience .ka-toggle {
+    flex: 1;
+    min-height: 38px;
+    padding: 9px 12px;
+    color: #fff;
+    background: #170a0f;
+    border: 1px solid #f01445;
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background .2s, box-shadow .2s;
+  }
+
+  #kuro-ambience .ka-toggle:hover {
+    background: #2b0b15;
+    box-shadow: 0 0 16px rgba(240, 20, 69, .16);
+  }
+
+  #kuro-ambience .ka-volume {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #a69ba0;
+    font-size: 10px;
+  }
+
+  #kuro-ambience input[type="range"] {
+    width: 72px;
+    accent-color: #f01445;
+    cursor: pointer;
+  }
+
+  #kuro-ambience .ka-footer {
+    margin-top: 12px;
+    padding-top: 9px;
+    border-top: 1px solid #302027;
+    color: #766970;
+    font-size: 9px;
+    letter-spacing: .5px;
+  }
+
+  @media (max-width: 480px) {
+    #kuro-ambience {
+      right: 12px;
+      bottom: 12px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #kuro-ambience *,
+    #kuro-ambience *::before {
+      transition: none !important;
+    }
+  }
+</style>
+
+<aside id="kuro-ambience" aria-label="Ambiance sonore KURO">
+  <div class="ka-top">
+    <div class="ka-brand">KURO / AUDIO</div>
+    <div class="ka-status">
+      <span id="ka-dot">●</span>
+      <span id="ka-status-text">STANDBY</span>
+    </div>
+  </div>
+
+  <div class="ka-title">TOKYO AFTER DARK</div>
+  <div class="ka-subtitle">
+    Pluie nocturne · Néons · Grondement urbain
+  </div>
+
+  <div class="ka-controls">
+    <button type="button" id="ka-toggle"
+      class="ka-toggle" aria-pressed="false">
+      ▶ ACTIVER L'AMBIANCE
+    </button>
+
+    <label class="ka-volume">
+      VOL
+      <input id="ka-volume" type="range"
+        min="0" max="100" value="25"
+        aria-label="Volume de l'ambiance">
+    </label>
+  </div>
+
+  <div class="ka-footer">
+    LOCAL AUDIO SYSTEM // NO AUTOPLAY
+  </div>
+</aside>
+
+<script>
+(() => {
+  const player = document.getElementById('kuro-ambience');
+  if (!player || player.dataset.initialized) return;
+  player.dataset.initialized = 'true';
+
+  const toggle = document.getElementById('ka-toggle');
+  const slider = document.getElementById('ka-volume');
+  const status = document.getElementById('ka-status-text');
+  const dot = document.getElementById('ka-dot');
+
+  let audio = null;
+  let master = null;
+  let playing = false;
+  let starting = false;
+
+  function createAmbience() {
+    const AudioContext =
+      window.AudioContext || window.webkitAudioContext;
+
+    if (!AudioContext) {
+      throw new Error('Audio non pris en charge');
+    }
+
+    audio = new AudioContext();
+
+    master = audio.createGain();
+    master.gain.value = Number(slider.value) / 100 * 0.22;
+    master.connect(audio.destination);
+
+    // Pluie : bruit doux filtré
+    const length = audio.sampleRate * 4;
+    const buffer = audio.createBuffer(1, length, audio.sampleRate);
+    const data = buffer.getChannelData(0);
+
+    let previous = 0;
+    for (let i = 0; i < length; i++) {
+      const white = Math.random() * 2 - 1;
+      previous = previous * 0.88 + white * 0.12;
+      data[i] = previous;
+    }
+
+    const rain = audio.createBufferSource();
+    rain.buffer = buffer;
+    rain.loop = true;
+
+    const rainFilter = audio.createBiquadFilter();
+    rainFilter.type = 'lowpass';
+    rainFilter.frequency.value = 950;
+
+    const rainGain = audio.createGain();
+    rainGain.gain.value = 0.8;
+
+    rain.connect(rainFilter);
+    rainFilter.connect(rainGain);
+    rainGain.connect(master);
+    rain.start();
+
+    // Bourdonnement grave de la ville
+    const hum = audio.createOscillator();
+    hum.type = 'sine';
+    hum.frequency.value = 55;
+
+    const humGain = audio.createGain();
+    humGain.gain.value = 0.055;
+
+    hum.connect(humGain);
+    humGain.connect(master);
+    hum.start();
+
+    // Résonance discrète des néons
+    const neon = audio.createOscillator();
+    neon.type = 'sine';
+    neon.frequency.value = 110;
+
+    const neonGain = audio.createGain();
+    neonGain.gain.value = 0.012;
+
+    neon.connect(neonGain);
+    neonGain.connect(master);
+    neon.start();
+  }
+
+  function updateUI() {
+    toggle.textContent = playing
+      ? 'Ⅱ METTRE EN PAUSE'
+      : '▶ ACTIVER L’AMBIANCE';
+
+    toggle.setAttribute('aria-pressed', String(playing));
+    status.textContent = playing ? 'PLAYING' : 'STANDBY';
+    dot.style.opacity = playing ? '1' : '0.45';
+  }
+
+  toggle.addEventListener('click', async () => {
+    if (starting) return;
+    starting = true;
+    toggle.disabled = true;
+
+    try {
+      if (!audio) createAmbience();
+
+      if (audio.state === 'closed') {
+        audio = null;
+        master = null;
+        createAmbience();
+      }
+
+      if (playing) {
+        await audio.suspend();
+        playing = false;
+      } else {
+        await audio.resume();
+        playing = audio.state === 'running';
+      }
+
+      updateUI();
+    } catch (error) {
+      status.textContent = 'INDISPONIBLE';
+      toggle.textContent = 'AUDIO INDISPONIBLE';
+      console.warn('KURO audio:', error);
+    } finally {
+      starting = false;
+      toggle.disabled = false;
+    }
+  });
+
+  slider.addEventListener('input', () => {
+    if (master && audio && audio.state !== 'closed') {
+      master.gain.setTargetAtTime(
+        Number(slider.value) / 100 * 0.22,
+        audio.currentTime,
+        0.04
+      );
+    }
+  });
+
+  updateUI();
+})();
+</script>
+<!-- ===== FIN KURO AUDIO ===== -->
   
 </body>
 </html>
