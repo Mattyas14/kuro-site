@@ -1333,6 +1333,18 @@ nav a:hover::after {
 </div></section>
 <section class="section" id="musique"><div class="wrap">
   <div class="section-head"><div><div class="kicker">02 / MUSIQUE</div><h2>KURO <span style="color:var(--red)">SOUND</span></h2></div><p class="section-intro">La bande-son des rues de Tokyo après minuit. Entre ombres, néons rouges et nuits sans fin. Trouve ton ambiance.</p></div>
+
+<div class="music-intro">
+  <div class="music-label">KURO SOUND SYSTEM</div>
+  <div class="music-kanji" aria-hidden="true">夜</div>
+  <h3>THE SOUND<br>OF THE NIGHT.</h3>
+  <p>
+    Des basses profondes, des néons dans la pluie,
+    des mélodies sombres et l'énergie de Tokyo après minuit.
+    Entre dans la bande-son de KURO.
+  </p>
+</div>
+  
   <div class="music-layout">
     <div class="music-feature"><div><div class="kicker">LISTEN AFTER DARK</div><h3 style="font-size:1.8rem;line-height:1.15;margin:14px 0">Chaque nuit<br>a son propre son.</h3><p style="color:var(--muted);max-width:300px">Du calme étrange aux nuits qui cognent. Trouve ton ambiance.</p></div><div class="big-kanji">音楽</div>
 <a class="btn" href="https://open.spotify.com/user/31i7zi36qix53bvwujb5ofnnmqau?si=ec45848264b54395" target="_blank" rel="noopener noreferrer">DÉCOUVRIR LES PLAYLISTS ↗</a>
@@ -1575,6 +1587,182 @@ if(commands[cmd])commands[cmd].forEach(t=>line(t));else line('Commande inconnue.
   #kuro-particles {
     position: fixed !important;
   }
+
+/* ===== KURO SOUND — NIGHT AUDIO ===== */
+#musique {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse at 90% 15%,
+      rgba(220, 20, 60, 0.09),
+      transparent 36%
+    ),
+    linear-gradient(180deg, #09090b, #10090d);
+}
+
+#musique::before {
+  content: "音";
+  position: absolute;
+  top: 35px;
+  right: 3%;
+  z-index: -1;
+  color: rgba(220, 20, 60, 0.045);
+  font-size: clamp(10rem, 25vw, 22rem);
+  font-weight: 900;
+  line-height: 1;
+  pointer-events: none;
+}
+
+#musique .music-feature {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #43202b;
+  background:
+    radial-gradient(
+      circle at 82% 25%,
+      rgba(220, 20, 60, 0.18),
+      transparent 30%
+    ),
+    linear-gradient(135deg, #1a1015, #0a090b 75%);
+  transition: border-color 0.3s ease,
+              transform 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+#musique .music-feature:hover {
+  transform: translateY(-4px);
+  border-color: #dc143c;
+  box-shadow:
+    0 15px 38px rgba(0, 0, 0, 0.3),
+    0 0 25px rgba(220, 20, 60, 0.09);
+}
+
+#musique .music-feature .big-kanji {
+  color: rgba(255, 36, 75, 0.13);
+  transition: transform 0.35s ease,
+              color 0.35s ease;
+  pointer-events: none;
+}
+
+#musique .music-feature:hover .big-kanji {
+  transform: rotate(-7deg) scale(1.06);
+  color: rgba(255, 36, 75, 0.23);
+}
+
+#musique .spotify-embeds {
+  min-width: 0;
+}
+
+#musique .spotify-embeds h3 {
+  margin-top: 28px;
+  margin-bottom: 14px;
+  letter-spacing: 0.06em;
+}
+
+#musique .spotify-embeds iframe {
+  display: block;
+  max-width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #38202a !important;
+  border-radius: 12px;
+  transition: border-color 0.25s ease;
+}
+
+#musique .spotify-embeds iframe:hover {
+  border-color: #dc143c !important;
+}
+
+@media (max-width: 600px) {
+  #musique .music-feature {
+    padding: 22px;
+  }
+
+  #musique .spotify-embeds iframe {
+    height: 200px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #musique .music-feature,
+  #musique .music-feature .big-kanji,
+  #musique .spotify-embeds iframe {
+    transition: none;
+  }
+
+  #musique .music-feature:hover {
+    transform: none;
+  }
+}
+
+#musique .music-intro {
+  position: relative;
+  overflow: hidden;
+  margin: 25px 0 30px;
+  padding: clamp(24px, 4vw, 42px);
+  border: 1px solid #43202b;
+  background:
+    radial-gradient(
+      circle at 82% 25%,
+      rgba(220, 20, 60, 0.18),
+      transparent 30%
+    ),
+    linear-gradient(135deg, #1a1015, #0a090b 75%);
+}
+
+#musique .music-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ff3659;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+#musique .music-label::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: currentColor;
+  box-shadow: 0 0 10px currentColor;
+}
+
+#musique .music-intro h3 {
+  position: relative;
+  z-index: 1;
+  margin: 24px 0 10px;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1.08;
+}
+
+#musique .music-intro p {
+  position: relative;
+  z-index: 1;
+  max-width: 540px;
+  color: #bdb3b8;
+  line-height: 1.8;
+}
+
+#musique .music-kanji {
+  position: absolute;
+  right: 7%;
+  top: 12%;
+  color: rgba(255, 36, 75, 0.13);
+  font-size: clamp(6rem, 14vw, 12rem);
+  font-weight: 900;
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  #musique .music-kanji {
+    right: 4%;
+    top: 20%;
+    font-size: 6rem;
+  }
+}
+  
 </style>
 
 <script>
