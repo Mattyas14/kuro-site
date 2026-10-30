@@ -1671,6 +1671,77 @@ nav a:focus-visible {
   }
 }
 
+/* ===== KURO.EXE — TERMINAL GLITCH ===== */
+
+#kuro-terminal {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-color: rgba(240, 20, 69, 0.55);
+  box-shadow:
+    0 0 18px rgba(240, 20, 69, 0.06),
+    inset 0 0 24px rgba(240, 20, 69, 0.025);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+#kuro-terminal:hover {
+  border-color: rgba(240, 20, 69, 0.85);
+  box-shadow:
+    0 0 24px rgba(240, 20, 69, 0.12),
+    inset 0 0 28px rgba(240, 20, 69, 0.035);
+}
+
+#kuro-terminal .terminal-header {
+  position: relative;
+  overflow: hidden;
+}
+
+#kuro-terminal .terminal-header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    transparent 0%,
+    rgba(240, 20, 69, 0.12) 48%,
+    transparent 52%
+  );
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+#kuro-terminal:hover .terminal-header::after {
+  opacity: 1;
+  animation: kuro-terminal-scan 0.65s ease-out 1;
+}
+
+#kuro-terminal .terminal-title {
+  transition: text-shadow 0.2s ease;
+}
+
+#kuro-terminal:hover .terminal-title {
+  text-shadow: 1px 0 rgba(255, 30, 70, 0.65),
+              -1px 0 rgba(255, 255, 255, 0.12);
+}
+
+@keyframes kuro-terminal-scan {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #kuro-terminal,
+  #kuro-terminal .terminal-title {
+    transition: none;
+  }
+
+  #kuro-terminal:hover .terminal-header::after {
+    animation: none;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -2502,7 +2573,89 @@ if(commands[cmd])commands[cmd].forEach(t=>line(t));else line('Commande inconnue.
     transform: none;
   }
 }
-  
+
+/* ===== KURO.EXE — GLITCH ROUGE & NOIR ===== */
+
+#exe .terminal {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(240, 20, 69, 0.5);
+  box-shadow: 0 0 22px rgba(240, 20, 69, 0.06);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+#exe .terminal:hover {
+  border-color: rgba(240, 20, 69, 0.85);
+  box-shadow: 0 0 26px rgba(240, 20, 69, 0.13);
+}
+
+#exe .termbar {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(240, 20, 69, 0.3);
+  transition: text-shadow 0.2s ease;
+}
+
+#exe .terminal:hover .termbar {
+  text-shadow: 1px 0 rgba(255, 20, 69, 0.45);
+}
+
+#exe .termbar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    transparent 0%,
+    rgba(240, 20, 69, 0.13) 48%,
+    transparent 53%
+  );
+  transform: translateX(-110%);
+  opacity: 0;
+}
+
+#exe .terminal:hover .termbar::after {
+  opacity: 1;
+  animation: kuro-scan 0.7s ease-out 1;
+}
+
+#exe #termInput {
+  caret-color: #f01445;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#exe #termInput:focus {
+  outline: none;
+  border-color: #f01445;
+  box-shadow: 0 0 12px rgba(240, 20, 69, 0.14);
+}
+
+#exe #termform button {
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+#exe #termform button:hover {
+  box-shadow: 0 0 18px rgba(240, 20, 69, 0.28);
+}
+
+@keyframes kuro-scan {
+  from { transform: translateX(-110%); }
+  to { transform: translateX(110%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #exe .terminal,
+  #exe #termInput,
+  #exe #termform button {
+    transition: none;
+  }
+
+  #exe .terminal:hover .termbar::after {
+    animation: none;
+  }
+}
+ 
 </style>
 
 <script>
