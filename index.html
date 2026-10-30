@@ -2138,16 +2138,86 @@ let toastTimer;function showToast(message){const t=document.getElementById('toas
 const form=document.getElementById('termform'),input=document.getElementById('termInput'),term=document.getElementById('termcontent');
 function line(txt,cls=''){const p=document.createElement('p');if(cls){const s=document.createElement('span');s.className=cls;s.textContent='› ';p.appendChild(s)}p.appendChild(document.createTextNode(txt));term.appendChild(p);term.scrollTop=term.scrollHeight}
 form.addEventListener('submit',e=>{e.preventDefault();const cmd=input.value.trim().toLowerCase();if(!cmd)return;line(cmd,'prompt');input.value='';
-const commands={
-help:['Commandes disponibles :','help — afficher cette aide','about — découvrir KURO','music — afficher les playlists','factions — voir les factions','clear — nettoyer le terminal','date — afficher la date locale'],
-about:['KURO | 黒','Deux faces. Une seule identité.','Community • Music • Night'],
-music:['KURO CORE — Spotify connecté','TOKYO AFTER DARK — Spotify connecté','CLEANING × TECHNO — lien à ajouter plus tard'],
-factions:['HUMAIN — Équilibre','GHOUL — Puissance','ENQUÊTEUR — Protection','KURO — L’ombre'],
-date:[new Date().toLocaleString('fr-FR')],
-clear:[]
+
+const commands = {
+  help: [
+    'KURO.EXE — COMMANDES DISPONIBLES',
+    '',
+    'help      — afficher cette aide',
+    'whoami    — découvrir ton identité KURO',
+    'about     — découvrir le projet',
+    'system    — informations de l’interface',
+    'night     — recevoir un message nocturne',
+    'music     — afficher les playlists',
+    'factions  — découvrir les factions',
+    'date      — afficher la date locale',
+    'clear     — nettoyer le terminal'
+  ],
+
+  whoami: [
+    'IDENTITÉ : VISITEUR KURO',
+    'ACCÈS : INTERFACE PUBLIQUE',
+    'STATUT : EXPLORATEUR DE LA NUIT',
+    'Ton histoire reste à écrire.'
+  ],
+
+  about: [
+    'KURO | 黒',
+    'Deux faces. Une seule identité.',
+    'COMMUNITY • MUSIC • NIGHT',
+    'Un univers entre ombre, musique et Japon.'
+  ],
+
+  system: [
+    'KURO.EXE — LOCAL INTERFACE',
+    'VERSION : 1.0.0',
+    'MODE : NAVIGATEUR WEB',
+    'CONNEXION DISCORD : NON CONTRÔLÉE',
+    'ÉTAT : INTERFACE ACTIVE'
+  ],
+
+  night: [
+    'La ville dort. Les néons restent éveillés.',
+    '23:53 — quelque part dans les rues de Tokyo.',
+    'Même dans l’ombre, une lumière subsiste.',
+    '夜 — La nuit garde ses secrets.',
+    'Le silence aussi possède sa bande-son.'
+  ],
+
+  music: [
+    'KURO CORE — Spotify',
+    'TOKYO AFTER DARK — Spotify',
+    'CLEANING × TECHNO — lien à ajouter plus tard'
+  ],
+
+  factions: [
+    'HUMAIN — Équilibre',
+    'GHOUL — Puissance',
+    'ENQUÊTEUR — Protection',
+    'KURO — L’ombre'
+  ],
+
+  date: [
+    new Date().toLocaleString('fr-FR')
+  ],
+
+  clear: []
 };
-if(cmd==='clear'){term.innerHTML='';return}
-if(commands[cmd])commands[cmd].forEach(t=>line(t));else line('Commande inconnue. Tape help pour la liste.');});
+
+if (cmd === 'night') {
+  const messages = commands.night;
+  const chosen = messages[Math.floor(Math.random() * messages.length)];
+  line(chosen);
+} else if (cmd === 'clear') {
+  term.innerHTML = '';
+  return;
+} else if (commands[cmd]) {
+  commands[cmd].forEach(t => line(t));
+} else {
+  line('Commande inconnue. Tape help pour la liste.');
+}
+return;
+
 </script>
 
 <!-- KURO — particules rouge sang -->
