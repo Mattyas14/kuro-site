@@ -12,8 +12,137 @@
 body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 80% 10%,rgba(220,20,60,.11),transparent 32%),radial-gradient(ellipse at 10% 70%,rgba(220,20,60,.06),transparent 35%)}
 a{color:inherit;text-decoration:none}button{font:inherit}.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
 header{height:76px;position:fixed;inset:0 0 auto;z-index:20;background:rgba(8,8,9,.86);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08)}
-.nav{height:100%;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font-weight:900;letter-spacing:.05em;font-size:1.35rem}.brand span{color:var(--red);margin-left:7px}.navlinks{display:flex;align-items:center;gap:27px;font-size:.82rem;color:#c6c1c3}.navlinks a{transition:color .2s}.navlinks a:hover,.navlinks a.active{color:var(--red2)}.navlinks a.active:after{content:"";display:block;height:2px;background:var(--red);margin-top:5px}
-.navright{display:flex;align-items:center;gap:10px}.moon{background:transparent;color:var(--white);border:1px solid var(--line);width:38px;height:38px;border-radius:50%;cursor:pointer}.menu{display:none;background:none;color:white;border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+
+/* ===== KURO NAV — RED NIGHT ===== */
+
+.nav {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.brand {
+  font-weight: 900;
+  letter-spacing: .05em;
+  font-size: 1.35rem;
+  transition: text-shadow .25s ease;
+}
+
+.brand:hover {
+  text-shadow: 0 0 18px rgba(220, 20, 60, .2);
+}
+
+.brand span {
+  color: var(--red);
+  margin-left: 7px;
+}
+
+.navlinks {
+  display: flex;
+  align-items: center;
+  gap: 27px;
+  font-size: .82rem;
+  color: #c6c1c3;
+}
+
+.navlinks a {
+  position: relative;
+  padding: 6px 0;
+  transition: color .25s ease;
+}
+
+.navlinks a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--red);
+  box-shadow: 0 0 10px rgba(220, 20, 60, .45);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .25s ease;
+}
+
+.navlinks a:hover,
+.navlinks a.active {
+  color: var(--red2);
+}
+
+.navlinks a:hover::after,
+.navlinks a.active::after {
+  transform: scaleX(1);
+}
+
+.navright {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.moon {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid var(--line);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition:
+    color .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease,
+    transform .25s ease;
+}
+
+.moon:hover {
+  color: var(--red2);
+  border-color: var(--red);
+  box-shadow: 0 0 16px rgba(220, 20, 60, .16);
+  transform: rotate(-12deg);
+}
+
+.menu {
+  display: none;
+  background: none;
+  color: white;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 6px 10px;
+  transition:
+    color .25s ease,
+    border-color .25s ease;
+}
+
+.menu:hover {
+  color: var(--red2);
+  border-color: var(--red);
+}
+
+.navlinks a:focus-visible,
+.moon:focus-visible,
+.menu:focus-visible {
+  outline: 2px solid var(--red2);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand,
+  .navlinks a,
+  .navlinks a::after,
+  .moon,
+  .menu {
+    transition: none;
+  }
+
+  .moon:hover {
+    transform: none;
+  }
+}
+
 
 .hero {
   min-height: 790px;
@@ -1481,6 +1610,63 @@ nav a:hover::after {
   #discord .discord-faction .faction-index,
   #discord .discord-faction h4,
   #discord .discord-faction .faction-bottom::after {
+    transition: none;
+  }
+}
+
+/* ===== KURO NAVIGATION — NIGHT MODE ===== */
+
+/* Barre de navigation */
+header,
+.navbar,
+nav {
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Liens de navigation : effets limités aux liens */
+nav a {
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+/* Soulignement rouge au survol */
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 1px;
+  background: #ff244b;
+  box-shadow: 0 0 8px rgba(255, 36, 75, 0.5);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+nav a:hover,
+nav a:focus-visible {
+  color: #ff526d;
+}
+
+nav a:hover::after,
+nav a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* Accessibilité */
+nav a:focus-visible {
+  outline: 1px solid #ff3659;
+  outline-offset: 5px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  header,
+  .navbar,
+  nav,
+  nav a,
+  nav a::after {
     transition: none;
   }
 }
