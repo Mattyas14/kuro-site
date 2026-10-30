@@ -1892,6 +1892,137 @@ nav a:focus-visible {
   }
 }
 
+/* KURO — CONTACT */
+#contact .contact-panel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  overflow: hidden;
+  padding: 42px;
+  border: 1px solid rgba(255, 40, 60, .3);
+  background:
+    radial-gradient(ellipse at 0% 50%, rgba(190, 0, 30, .18), transparent 55%),
+    linear-gradient(135deg, #111 0%, #080808 100%);
+}
+
+#contact .contact-mark {
+  flex-shrink: 0;
+  font-size: clamp(70px, 12vw, 130px);
+  font-weight: 900;
+  color: #d71935;
+  text-shadow: 0 0 35px rgba(215, 25, 53, .3);
+}
+
+#contact .contact-copy {
+  flex: 1;
+}
+
+#contact .contact-status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #ff5369;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+#contact .contact-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ff304b;
+  box-shadow: 0 0 12px #ff304b;
+}
+
+#contact .contact-copy h3 {
+  margin: 15px 0 10px;
+  font-size: clamp(23px, 4vw, 36px);
+  text-transform: uppercase;
+}
+
+#contact .contact-copy p {
+  max-width: 520px;
+  color: #aaa;
+  line-height: 1.8;
+}
+
+#contact .contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+#contact .contact-btn {
+  display: inline-block;
+  padding: 13px 17px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: .2s ease;
+}
+
+#contact .contact-btn.primary {
+  color: white;
+  background: #c8102e;
+  border: 1px solid #c8102e;
+}
+
+#contact .contact-btn.secondary {
+  color: white;
+  border: 1px solid #444;
+}
+
+#contact .contact-btn:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.2);
+}
+
+#contact .contact-code {
+  position: absolute;
+  right: 16px;
+  bottom: 12px;
+  color: #555;
+  font-size: 9px;
+  line-height: 1.8;
+  text-align: right;
+  letter-spacing: 1px;
+}
+
+#contact .contact-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 18px;
+  color: #777;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 650px) {
+  #contact .contact-panel {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    padding: 25px;
+  }
+
+  #contact .contact-mark {
+    font-size: 65px;
+  }
+
+  #contact .contact-code {
+    position: static;
+    align-self: flex-end;
+  }
+
+  #contact .contact-footer {
+    flex-direction: column;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -3630,6 +3761,58 @@ form.addEventListener('submit', e => {
 })();
 </script>
 <!-- ===== FIN KURO AUDIO ===== -->
-  
+
+
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="kicker">06 / TRANSMISSION</div>
+        <h2>Entre dans le <span style="color:var(--red)">silence.</span></h2>
+      </div>
+      <p class="section-intro">
+        Une question, une idée ou l'envie de rejoindre KURO ?
+        Le signal est ouvert.
+      </p>
+    </div>
+
+    <div class="contact-panel">
+      <div class="contact-mark">黒</div>
+
+      <div class="contact-copy">
+        <div class="contact-status">
+          <span class="contact-dot"></span>
+          SIGNAL DISPONIBLE
+        </div>
+        <h3>La nuit nous rassemble.</h3>
+        <p>
+          Rejoins la communauté, échange avec les membres
+          et écris la suite de l'histoire KURO.
+        </p>
+
+        <div class="contact-actions">
+          <a class="contact-btn primary"
+             href="https://discord.gg/stbTbMZKtw"
+             target="_blank"
+             rel="noopener noreferrer">
+            REJOINDRE DISCORD ↗
+          </a>
+          <a class="contact-btn secondary"
+             href="#rangs">
+            EXPLORER LES RANGS
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-code">KURO.exe<br>END TRANSMISSION_</div>
+    </div>
+
+    <div class="contact-footer">
+      <span>KURO — 黒</span>
+      <span>STAY IN THE SHADOWS.</span>
+    </div>
+  </div>
+</section>
+        
 </body>
 </html>
