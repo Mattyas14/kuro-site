@@ -1370,6 +1370,121 @@ nav a:hover::after {
   }
 }
 
+/* ===== KURO FACTIONS — SHADOW AWAKENING ===== */
+
+#discord .discord-factions {
+  perspective: 1000px;
+}
+
+#discord .discord-faction {
+  isolation: isolate;
+  min-width: 0;
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(220, 20, 60, 0.08),
+      transparent 48%
+    ),
+    linear-gradient(155deg, #171015 0%, #0a090b 78%);
+}
+
+#discord .discord-faction::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  background: linear-gradient(
+    125deg,
+    transparent 20%,
+    rgba(255, 36, 75, 0.07) 48%,
+    transparent 72%
+  );
+  transform: translateX(-35%);
+  transition: opacity 0.35s ease, transform 0.55s ease;
+  pointer-events: none;
+}
+
+#discord .discord-faction:hover::after,
+#discord .discord-faction:focus-visible::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+#discord .discord-faction .faction-symbol {
+  display: inline-block;
+  transform-origin: center;
+  text-shadow: 0 0 0 rgba(255, 36, 75, 0);
+}
+
+#discord .discord-faction:hover .faction-symbol,
+#discord .discord-faction:focus-visible .faction-symbol {
+  color: #ff526d;
+  text-shadow:
+    0 0 12px rgba(255, 36, 75, 0.45),
+    0 0 32px rgba(220, 20, 60, 0.2);
+  transform: scale(1.12);
+}
+
+#discord .discord-faction .faction-index {
+  transition: color 0.25s ease;
+}
+
+#discord .discord-faction:hover .faction-index,
+#discord .discord-faction:focus-visible .faction-index {
+  color: #ff526d;
+}
+
+#discord .discord-faction h4 {
+  transition: letter-spacing 0.25s ease, color 0.25s ease;
+}
+
+#discord .discord-faction:hover h4,
+#discord .discord-faction:focus-visible h4 {
+  color: #fff;
+  letter-spacing: 0.1em;
+}
+
+#discord .discord-faction .faction-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+#discord .discord-faction .faction-bottom::after {
+  content: "↗";
+  color: #ff3659;
+  transition: transform 0.25s ease;
+}
+
+#discord .discord-faction:hover .faction-bottom::after,
+#discord .discord-faction:focus-visible .faction-bottom::after {
+  transform: translate(3px, -3px);
+}
+
+/* Halo discret sur le portail */
+#discord .discord-hero {
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.035),
+    0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+#discord .discord-hero:hover {
+  border-color: rgba(220, 20, 60, 0.65);
+}
+
+/* Mouvement réduit si demandé par le système */
+@media (prefers-reduced-motion: reduce) {
+  #discord .discord-faction::after,
+  #discord .discord-faction .faction-symbol,
+  #discord .discord-faction .faction-index,
+  #discord .discord-faction h4,
+  #discord .discord-faction .faction-bottom::after {
+    transition: none;
+  }
+}
+
 </style>
 </head>
 <body>
