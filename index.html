@@ -1866,6 +1866,32 @@ nav a:focus-visible {
   }
 }
 
+/* ===== KURO.EXE — STATUS BAR ===== */
+
+#exe .terminal::before {
+  content: "KURO SYSTEM  /  LOCAL MODE";
+  display: block;
+  padding: 8px 12px;
+  color: #8e7b82;
+  background: #090709;
+  border-top: 1px solid rgba(240, 20, 69, 0.22);
+  font-family: monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+
+/* Petit indicateur visuel au survol */
+#exe .terminal:hover::before {
+  color: #f01445;
+  text-shadow: 0 0 7px rgba(240, 20, 69, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #exe .terminal:hover::before {
+    text-shadow: none;
+  }
+}
+
 </style>
 </head>
 <body>
