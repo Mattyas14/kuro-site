@@ -2023,6 +2023,91 @@ nav a:focus-visible {
   }
 }
 
+/* ═══ KURO — SUBTLE NIGHT BACKGROUND ═══ */
+
+html {
+  background-color: #080609;
+}
+
+body {
+  background-color: #080609;
+  background-image:
+    radial-gradient(
+      ellipse at 12% 12%,
+      rgba(130, 0, 25, 0.13),
+      transparent 38%
+    ),
+    radial-gradient(
+      ellipse at 88% 42%,
+      rgba(95, 0, 20, 0.09),
+      transparent 34%
+    ),
+    radial-gradient(
+      ellipse at 48% 90%,
+      rgba(110, 0, 22, 0.08),
+      transparent 42%
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      transparent 59px,
+      rgba(255, 255, 255, 0.012) 60px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 59px,
+      rgba(255, 255, 255, 0.012) 60px
+    );
+
+  background-attachment: fixed;
+}
+
+/* Halos discrets derrière les sections */
+.section {
+  position: relative;
+  isolation: isolate;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 8%;
+  left: -100px;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    rgba(160, 0, 30, 0.07),
+    transparent 70%
+  );
+}
+
+/* Contenu toujours au-dessus des effets */
+.section > * {
+  position: relative;
+}
+
+/* Respect des appareils mobiles */
+@media (max-width: 700px) {
+  body {
+    background-attachment: scroll;
+  }
+
+  .section::before {
+    opacity: 0.65;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    background-attachment: scroll;
+  }
+}
+
 </style>
 </head>
 <body>
