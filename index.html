@@ -3430,44 +3430,6 @@ form.addEventListener('submit', e => {
 })();
 </script>
 
-/* ===== KURO.EXE — TYPING EFFECT ===== */
-(() => {
-  const startKuroBoot = () => {
-    const welcome = document.querySelector(
-      '#termcontent p:nth-child(3)'
-    );
-
-    if (!welcome || welcome.dataset.typed === 'true') return;
-
-    const prompt = welcome.querySelector('.prompt');
-    if (!prompt) return;
-
-    const message = " Bienvenue dans l'ombre.";
-    welcome.dataset.typed = 'true';
-
-    const text = document.createTextNode('');
-    welcome.replaceChildren(prompt, text);
-
-    let index = 0;
-
-    const typeNext = () => {
-      if (index < message.length) {
-        text.textContent += message[index];
-        index++;
-        setTimeout(typeNext, 55);
-      }
-    };
-
-    setTimeout(typeNext, 700);
-  };
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', startKuroBoot);
-  } else {
-    startKuroBoot();
-  }
-})();
-
 <!-- ===== KURO : TOKYO AFTER DARK ===== -->
 <style>
   #kuro-ambience {
