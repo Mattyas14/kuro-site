@@ -2128,30 +2128,76 @@ nav a:focus-visible {
 </main>
 <footer><div class="wrap foot"><div><strong>KURO <span class="jp">| 黒</span></strong> — Community • Music • Night</div><div>Fait dans l'ombre. <span class="jp">もっと深くへ。</span></div><div>© <span id="year"></span> KURO. Tous droits réservés.</div></div></footer>
 <div class="toast" id="toast" role="status"></div>
+
 <script>
-const navlinks=document.getElementById('navlinks');
-document.getElementById('menuBtn').addEventListener('click',()=>navlinks.classList.toggle('open'));
-navlinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navlinks.classList.remove('open');navlinks.querySelectorAll('a').forEach(x=>x.classList.remove('active'));a.classList.add('active')}));
-document.getElementById('themeBtn').addEventListener('click',()=>{document.body.classList.toggle('light-mode');showToast(document.body.classList.contains('light-mode')?'Mode clair activé.':'Retour dans l’ombre.')});
-document.getElementById('year').textContent=new Date().getFullYear();
-let toastTimer;function showToast(message){const t=document.getElementById('toast');t.textContent=message;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),3600)}
-const form=document.getElementById('termform'),input=document.getElementById('termInput'),term=document.getElementById('termcontent');
-function line(txt,cls=''){const p=document.createElement('p');if(cls){const s=document.createElement('span');s.className=cls;s.textContent='› ';p.appendChild(s)}p.appendChild(document.createTextNode(txt));term.appendChild(p);term.scrollTop=term.scrollHeight}
-form.addEventListener('submit',e=>{e.preventDefault();const cmd=input.value.trim().toLowerCase();if(!cmd)return;line(cmd,'prompt');input.value='';
+const navlinks = document.getElementById('navlinks');
+
+document.getElementById('menuBtn').addEventListener('click', () => {
+  navlinks.classList.toggle('open');
+});
+
+navlinks.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    navlinks.classList.remove('open');
+    navlinks.querySelectorAll('a').forEach(x => x.classList.remove('active'));
+    a.classList.add('active');
+  });
+});
+
+document.getElementById('themeBtn').addEventListener('click', () => {
+  document.body.classList.toggle('light-mode');
+  showToast(
+    document.body.classList.contains('light-mode')
+      ? 'Mode clair activé.'
+      : 'Retour dans l’ombre.'
+  );
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+let toastTimer;
+
+function showToast(message) {
+  const t = document.getElementById('toast');
+  t.textContent = message;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3600);
+}
+
+/* ===== KURO.EXE ===== */
+
+const form = document.getElementById('termform');
+const input = document.getElementById('termInput');
+const term = document.getElementById('termcontent');
+
+function line(txt, cls = '') {
+  const p = document.createElement('p');
+
+  if (cls) {
+    const s = document.createElement('span');
+    s.className = cls;
+    s.textContent = '› ';
+    p.appendChild(s);
+  }
+
+  p.appendChild(document.createTextNode(txt));
+  term.appendChild(p);
+  term.scrollTop = term.scrollHeight;
+}
 
 const commands = {
   help: [
     'KURO.EXE — COMMANDES DISPONIBLES',
-    '',
-    'help      — afficher cette aide',
-    'whoami    — découvrir ton identité KURO',
-    'about     — découvrir le projet',
-    'system    — informations de l’interface',
-    'night     — recevoir un message nocturne',
-    'music     — afficher les playlists',
-    'factions  — découvrir les factions',
-    'date      — afficher la date locale',
-    'clear     — nettoyer le terminal'
+    'help — afficher cette aide',
+    'whoami — découvrir ton identité KURO',
+    'about — découvrir KURO',
+    'system — informations de l’interface',
+    'night — message nocturne',
+    'music — afficher les playlists',
+    'factions — voir les factions',
+    'date — afficher la date locale',
+    'clear — nettoyer le terminal'
   ],
 
   whoami: [
@@ -2164,8 +2210,7 @@ const commands = {
   about: [
     'KURO | 黒',
     'Deux faces. Une seule identité.',
-    'COMMUNITY • MUSIC • NIGHT',
-    'Un univers entre ombre, musique et Japon.'
+    'Community • Music • Night'
   ],
 
   system: [
@@ -2176,17 +2221,9 @@ const commands = {
     'ÉTAT : INTERFACE ACTIVE'
   ],
 
-  night: [
-    'La ville dort. Les néons restent éveillés.',
-    '23:53 — quelque part dans les rues de Tokyo.',
-    'Même dans l’ombre, une lumière subsiste.',
-    '夜 — La nuit garde ses secrets.',
-    'Le silence aussi possède sa bande-son.'
-  ],
-
   music: [
-    'KURO CORE — Spotify',
-    'TOKYO AFTER DARK — Spotify',
+    'KURO CORE — Spotify connecté',
+    'TOKYO AFTER DARK — Spotify connecté',
     'CLEANING × TECHNO — lien à ajouter plus tard'
   ],
 
@@ -2199,25 +2236,46 @@ const commands = {
 
   date: [
     new Date().toLocaleString('fr-FR')
-  ],
-
-  clear: []
+  ]
 };
 
-if (cmd === 'night') {
-  const messages = commands.night;
-  const chosen = messages[Math.floor(Math.random() * messages.length)];
-  line(chosen);
-} else if (cmd === 'clear') {
-  term.innerHTML = '';
-  return;
-} else if (commands[cmd]) {
-  commands[cmd].forEach(t => line(t));
-} else {
-  line('Commande inconnue. Tape help pour la liste.');
-}
-return;
+const nightMessages = [
+  'La ville dort. Les néons restent éveillés.',
+  '23:53 — quelque part dans les rues de Tokyo.',
+  'Même dans l’ombre, une lumière subsiste.',
+  '夜 — La nuit garde ses secrets.',
+  'Le silence aussi possède sa bande-son.'
+];
 
+form.addEventListener('submit', e => {
+  e.preventDefault();
+
+  const cmd = input.value.trim().toLowerCase();
+  if (!cmd) return;
+
+  line(cmd, 'prompt');
+  input.value = '';
+
+  if (cmd === 'clear') {
+    term.innerHTML = '';
+    return;
+  }
+
+  if (cmd === 'night') {
+    const chosen = nightMessages[
+      Math.floor(Math.random() * nightMessages.length)
+    ];
+    line(chosen);
+    return;
+  }
+
+  if (Object.prototype.hasOwnProperty.call(commands, cmd)) {
+    commands[cmd].forEach(text => line(text));
+    return;
+  }
+
+  line('Commande inconnue. Tape help pour la liste.');
+});
 </script>
 
 <!-- KURO — particules rouge sang -->
