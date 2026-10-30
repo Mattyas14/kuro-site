@@ -2078,6 +2078,17 @@ body::before {
   background-color: transparent !important;
 }
 
+/* KURO — subtle background parallax */
+body {
+  background-position: center 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body {
+    background-attachment: fixed;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -4405,6 +4416,40 @@ form.addEventListener('submit', e => {
 })();
 </script>
 <!-- END KURO / RED RAIN -->
-        
+
+<!-- KURO / PARALLAX -->
+<script>
+(() => {
+  const reduceMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  );
+
+  if (reduceMotion.matches) return;
+
+  let ticking = false;
+
+  function updateParallax() {
+    if (ticking) return;
+    ticking = true;
+
+    requestAnimationFrame(() => {
+      const offset = Math.min(window.scrollY * 0.12, 180);
+
+      document.body.style.backgroundPosition =
+        `center ${-offset}px`;
+
+      ticking = false;
+    });
+  }
+
+  window.addEventListener('scroll', updateParallax, {
+    passive: true
+  });
+
+  updateParallax();
+})();
+</script>
+<!-- END KURO / PARALLAX -->
+       
 </body>
 </html>
