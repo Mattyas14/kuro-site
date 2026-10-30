@@ -1823,6 +1823,49 @@ nav a:focus-visible {
   }
 }
 
+/* ===== KURO.EXE — SUBTLE CRT ===== */
+
+#exe .terminal {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Fines lignes d'écran */
+#exe .terminal::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: inherit;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 3px,
+    rgba(0, 0, 0, 0.16) 4px
+  );
+  opacity: 0.32;
+}
+
+/* Légère lueur sur le contenu */
+#exe #termcontent {
+  text-shadow: 0 0 5px rgba(240, 20, 69, 0.08);
+}
+
+/* Focus rouge sur la saisie */
+#exe #termInput:focus {
+  outline: none;
+  caret-color: #f01445;
+  box-shadow: 0 0 10px rgba(240, 20, 69, 0.12);
+}
+
+/* Respect des préférences de mouvement */
+@media (prefers-reduced-motion: reduce) {
+  #exe .terminal::after {
+    background: none;
+  }
+}
+
 </style>
 </head>
 <body>
