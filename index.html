@@ -4273,6 +4273,138 @@ form.addEventListener('submit', e => {
     </div>
   </div>
 </section>
+
+<!-- KURO / RED RAIN EFFECT -->
+<style>
+  #kuro-rain {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+    opacity: 0.42;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #kuro-rain {
+      display: none;
+    }
+  }
+</style>
+
+<canvas id="kuro-rain" aria-hidden="true"></canvas>
+
+<script>
+(() => {
+  const canvas = document.getElementById('kuro-rain');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  const reduceMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  );
+
+  if (reduceMotion.matches) return;
+
+  let width = 0;
+  let height = 0;
+  let drops = [];
+  let animationId;
+  let lastFrame = 0;
+
+  const maxDrops = 38;
+
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+
+    width = window.innerWidth;
+    height = window.innerHeight;
+
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const count = Math.min(
+      maxDrops,
+      Math.floor((width * height) / 28000) + 12
+    );
+
+    drops = Array.from({ length: count }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      length: 8 + Math.random() * 16,
+      speed: 1.2 + Math.random() * 2.2,
+      alpha: 0.12 + Math.random() * 0.32
+    }));
+  }
+
+  function draw(timestamp) {
+    animationId = requestAnimationFrame(draw);
+
+    if (timestamp - lastFrame < 40) return;
+    lastFrame = timestamp;
+
+    ctx.clearRect(0, 0, width, height);
+    ctx.lineWidth = 1;
+
+    for (const drop of drops) {
+      const gradient = ctx.createLinearGradient(
+        drop.x, drop.y,
+        drop.x - 1, drop.y + drop.length
+      );
+
+      gradient.addColorStop(0, 'rgba(255,25,55,0)');
+      gradient.addColorStop(1, `rgba(255,25,55,${drop.alpha})`);
+
+      ctx.strokeStyle = gradient;
+      ctx.beginPath();
+      ctx.moveTo(drop.x, drop.y);
+      ctx.lineTo(drop.x - 1, drop.y + drop.length);
+      ctx.stroke();
+
+      drop.y += drop.speed;
+      drop.x -= 0.15;
+
+      if (drop.y > height + drop.length) {
+        drop.y = -drop.length;
+        drop.x = Math.random() * width;
+      }
+
+      if (drop.x < 0) drop.x = width;
+    }
+  }
+
+  function stop() {
+    cancelAnimationFrame(animationId);
+  }
+
+  function start() {
+    stop();
+    lastFrame = 0;
+    animationId = requestAnimationFrame(draw);
+  }
+
+  resize();
+  start();
+
+  window.addEventListener('resize', resize, { passive: true });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      stop();
+    } else {
+      start();
+    }
+  });
+})();
+</script>
+<!-- END KURO / RED RAIN -->
         
 </body>
 </html>
