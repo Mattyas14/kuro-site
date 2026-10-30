@@ -2113,7 +2113,20 @@ nav a:focus-visible {
 </section>
 <section class="section" id="exe"><div class="wrap">
   <div class="section-head"><div><div class="kicker">04 / INTERFACE EXPÉRIMENTALE</div><h2>Lance <span style="color:var(--red)">KURO.EXE</span></h2></div><p class="section-intro">Un petit terminal local pour explorer l'univers. Les commandes ne contrôlent pas Discord et ne modifient aucun compte.</p></div>
-  <div class="terminal"><div class="termbar">● &nbsp; KURO.EXE — TERMINAL LOCAL <span style="float:right">v1.0.0</span></div><div class="termcontent" id="termcontent" aria-live="polite"><p><span class="prompt">›</span> Initialisation de l'interface...</p><p><span class="prompt">›</span> Chargement des données KURO...</p><p><span class="prompt">›</span> Bienvenue dans l'ombre.</p><p style="color:#777">Tape <span style="color:var(--red)">help</span> pour afficher les commandes.</p></div><form class="termform" id="termform"><input id="termInput" autocomplete="off" aria-label="Commande terminal" placeholder="entre une commande…"><button type="submit">EXEC ↵</button></form></div>
+<div class="kuro-hud">
+  <div class="hud-brand">
+    <span class="hud-indicator"></span>
+    <span>KURO<span class="hud-red">.EXE</span></span>
+  </div>
+  <div class="hud-status">
+    <span class="hud-status-dot"></span>
+    INTERFACE ACTIVE
+  </div>
+  <div class="hud-version">BUILD 01.00</div>
+</div>
+
+<div class="terminal">
+<div class="termbar">● &nbsp; KURO.EXE — TERMINAL LOCAL <span style="float:right">v1.0.0</span></div><div class="termcontent" id="termcontent" aria-live="polite"><p><span class="prompt">›</span> Initialisation de l'interface...</p><p><span class="prompt">›</span> Chargement des données KURO...</p><p><span class="prompt">›</span> Bienvenue dans l'ombre.</p><p style="color:#777">Tape <span style="color:var(--red)">help</span> pour afficher les commandes.</p></div><form class="termform" id="termform"><input id="termInput" autocomplete="off" aria-label="Commande terminal" placeholder="entre une commande…"><button type="submit">EXEC ↵</button></form></div>
 </div></section>
 <section class="section" id="rangs"><div class="wrap">
   <div class="section-head"><div><div class="kicker">05 / PROGRESSION</div><h2>Évolue dans <span style="color:var(--red)">KURO.</span></h2></div><p class="section-intro">Un aperçu des paliers de progression. Les seuils affichés sont des exemples à vérifier avec la configuration réelle de ton serveur.</p></div>
@@ -2861,6 +2874,110 @@ form.addEventListener('submit', e => {
   }
 
   #exe .terminal:hover .termbar::after {
+    animation: none;
+  }
+}
+
+/* ===== KURO.EXE — SYSTEM HUD ===== */
+
+#exe .kuro-hud {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 16px;
+  margin-bottom: 0;
+  background: #0b080a;
+  border: 1px solid rgba(240, 20, 69, 0.38);
+  border-bottom: 1px solid rgba(240, 20, 69, 0.22);
+  color: #d8d2d5;
+  font-family: monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+#exe .hud-brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+#exe .hud-red {
+  color: #f01445;
+}
+
+#exe .hud-indicator,
+#exe .hud-status-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+  border-radius: 50%;
+  background: #f01445;
+  box-shadow: 0 0 9px rgba(240, 20, 69, 0.7);
+  animation: kuro-hud-pulse 2s ease-in-out infinite;
+}
+
+#exe .hud-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #aaa0a5;
+  white-space: nowrap;
+}
+
+#exe .hud-status-dot {
+  width: 6px;
+  height: 6px;
+  flex-basis: 6px;
+  animation-delay: 0.3s;
+}
+
+#exe .hud-version {
+  color: #f01445;
+  white-space: nowrap;
+}
+
+#exe .terminal {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+@keyframes kuro-hud-pulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 9px rgba(240, 20, 69, 0.7);
+  }
+  50% {
+    opacity: 0.45;
+    box-shadow: 0 0 3px rgba(240, 20, 69, 0.25);
+  }
+}
+
+@media (max-width: 520px) {
+  #exe .kuro-hud {
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    padding: 11px;
+    font-size: 9px;
+  }
+
+  #exe .hud-status {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  #exe .hud-version {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #exe .hud-indicator,
+  #exe .hud-status-dot {
     animation: none;
   }
 }
