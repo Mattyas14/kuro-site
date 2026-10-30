@@ -1243,6 +1243,133 @@ nav a:hover::after {
   }
 }
 
+/* ===== KURO DISCORD — RED PORTAL ===== */
+
+#discord.discord-portal {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse at 8% 45%,
+      rgba(220, 20, 60, 0.10),
+      transparent 42%
+    ),
+    linear-gradient(180deg, #0a090b 0%, #10080c 100%);
+}
+
+/* Halo japonais en arrière-plan */
+#discord.discord-portal::before {
+  content: "黒";
+  position: absolute;
+  top: 5%;
+  right: 2%;
+  z-index: -1;
+  color: rgba(220, 20, 60, 0.045);
+  font-size: clamp(12rem, 28vw, 24rem);
+  font-weight: 900;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* En-tête de la section */
+#discord .discord-heading {
+  position: relative;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(220, 20, 60, 0.25);
+}
+
+#discord .discord-heading .kicker {
+  color: #ff3659;
+  letter-spacing: 0.18em;
+}
+
+#discord .discord-heading h2 {
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+#discord .discord-red {
+  color: #ff244b;
+  text-shadow: 0 0 22px rgba(255, 36, 75, 0.18);
+}
+
+#discord .section-intro {
+  line-height: 1.8;
+}
+
+/* Cartes et blocs éventuels */
+#discord .discord-card,
+#discord .discord-panel,
+#discord .discord-content {
+  border: 1px solid #38202a;
+  border-radius: 14px;
+  background: linear-gradient(
+    145deg,
+    rgba(30, 14, 20, 0.96),
+    rgba(10, 9, 11, 0.98)
+  );
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+#discord .discord-card:hover,
+#discord .discord-panel:hover,
+#discord .discord-content:hover {
+  border-color: rgba(255, 36, 75, 0.75);
+  box-shadow: 0 0 24px rgba(220, 20, 60, 0.08);
+  transform: translateY(-3px);
+}
+
+/* Boutons de la section */
+#discord .btn {
+  border-color: #dc143c;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+#discord .btn:hover {
+  border-color: #ff3659;
+  box-shadow: 0 0 22px rgba(220, 20, 60, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  #discord .discord-heading {
+    padding-bottom: 18px;
+  }
+
+  #discord.discord-portal::before {
+    top: 15%;
+    right: -8%;
+    font-size: 12rem;
+  }
+}
+
+/* Respect des préférences d'accessibilité */
+@media (prefers-reduced-motion: reduce) {
+  #discord .discord-card,
+  #discord .discord-panel,
+  #discord .discord-content,
+  #discord .btn {
+    transition: none;
+  }
+
+  #discord .discord-card:hover,
+  #discord .discord-panel:hover,
+  #discord .discord-content:hover,
+  #discord .btn:hover {
+    transform: none;
+  }
+}
+
 </style>
 </head>
 <body>
