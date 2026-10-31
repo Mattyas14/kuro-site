@@ -2222,73 +2222,197 @@ body {
   </div>
 </div></section>
 
+
 <!-- ===== KURO — PROJETS ===== -->
 <section id="projets" class="section">
   <div class="wrap">
 
     <div class="project-heading">
       <div>
-        <span class="project-eyebrow">03 / PROJETS</span>
+        <span class="project-eyebrow">03 / PROJECT ARCHIVE</span>
         <h2>Mes <span>projets.</span></h2>
       </div>
-      <p>
-        Des idées prennent forme dans l'ombre.
-        Bienvenue dans mes expérimentations.
-      </p>
+      <p>Des idées prennent forme dans l'ombre. Explore les systèmes KURO.</p>
+    </div>
+
+    <div class="project-filters" role="group" aria-label="Filtrer les projets">
+      <button class="project-filter is-active" data-filter="all" aria-pressed="true">TOUS</button>
+      <button class="project-filter" data-filter="web" aria-pressed="false">WEB</button>
+      <button class="project-filter" data-filter="dev" aria-pressed="false">DEV</button>
+      <button class="project-filter" data-filter="visual" aria-pressed="false">VISUEL</button>
     </div>
 
     <div class="project-grid">
 
-      <article class="project-card">
-        <span class="project-number">PROJECT_001</span>
-        <div class="project-icon">黒</div>
-        <h3>KURO.EXE</h3>
-        <p>
-          Un univers numérique noir et rouge,
-          entre identité japonaise et esthétique cyberpunk.
-        </p>
-        <span class="project-tag">WEB DESIGN</span>
+      <article class="project-card project-featured" data-category="web visual">
+        <div class="project-visual project-visual-main">
+          <span class="project-visual-mark">黒</span>
+          <span class="project-visual-code">K-001 // CORE</span>
+          <span class="project-scan"></span>
+        </div>
+        <div class="project-content">
+          <div class="project-meta">
+            <span>PROJECT_001</span>
+            <span class="project-status"><i></i> PORTFOLIO</span>
+          </div>
+          <h3>KURO.EXE</h3>
+          <p>L'univers numérique de KURO : design sombre, esthétique japonaise et expériences interactives.</p>
+          <div class="project-tags"><span>WEB DESIGN</span><span>IDENTITY</span></div>
+          <div class="project-actions">
+            <button class="project-button project-details"
+              data-title="KURO.EXE"
+              data-description="Le portail central de l'univers KURO. Une expérience web construite autour d'une identité noire et rouge, d'influences japonaises et d'effets visuels immersifs."
+              data-stack="HTML • CSS • JavaScript"
+              data-status="En développement">EXPLORER LE PROJET ↗</button>
+            <span class="project-index">01 / 03</span>
+          </div>
+        </div>
       </article>
 
-      <article class="project-card">
-        <span class="project-number">PROJECT_002</span>
-        <div class="project-icon">⌘</div>
-        <h3>KURO SYSTEMS</h3>
-        <p>
-          Des expérimentations en programmation,
-          automatisation et développement de bots.
-        </p>
-        <span class="project-tag">DEVELOPMENT</span>
+      <article class="project-card" data-category="dev">
+        <div class="project-visual project-visual-dev">
+          <span class="project-visual-mark">⌘</span>
+          <span class="project-visual-code">K-002 // SYSTEMS</span>
+          <span class="project-scan"></span>
+        </div>
+        <div class="project-content">
+          <div class="project-meta">
+            <span>PROJECT_002</span>
+            <span class="project-status"><i></i> DEV LAB</span>
+          </div>
+          <h3>KURO SYSTEMS</h3>
+          <p>Programmation, automatisation et développement d'outils numériques.</p>
+          <div class="project-tags"><span>PYTHON</span><span>BOTS</span></div>
+          <div class="project-actions">
+            <button class="project-button project-details"
+              data-title="KURO SYSTEMS"
+              data-description="Un laboratoire de développement consacré aux bots, aux outils numériques et aux expérimentations en programmation."
+              data-stack="Python • SQLite • APIs"
+              data-status="Laboratoire de développement">EXPLORER LE PROJET ↗</button>
+            <span class="project-index">02 / 03</span>
+          </div>
+        </div>
       </article>
 
-      
-<article class="project-card">
-  <span class="project-number">PROJECT_003</span>
-
-  <div class="project-icon">影</div>
-
-  <h3>KURO // NIGHT PROTOCOL</h3>
-
-  <p>
-    Une expérience immersive entre pluie rouge,
-    néons japonais et ambiance cyberpunk.
-    La nuit devient une interface.
-  </p>
-
-  <span class="project-tag">NIGHT EXPERIENCE</span>
-</article>
+      <article class="project-card" data-category="visual web">
+        <div class="project-visual project-visual-night">
+          <span class="project-visual-mark">影</span>
+          <span class="project-visual-code">K-003 // NIGHT</span>
+          <span class="project-scan"></span>
+        </div>
+        <div class="project-content">
+          <div class="project-meta">
+            <span>PROJECT_003</span>
+            <span class="project-status"><i></i> EXPERIMENT</span>
+          </div>
+          <h3>NIGHT PROTOCOL</h3>
+          <p>Une expérience visuelle nocturne entre pluie rouge, néons japonais et ambiance cyberpunk.</p>
+          <div class="project-tags"><span>VISUAL FX</span><span>ATMOSPHERE</span></div>
+          <div class="project-actions">
+            <button class="project-button project-details"
+              data-title="NIGHT PROTOCOL"
+              data-description="Une collection d'expérimentations visuelles inspirées des rues japonaises la nuit, des lumières rouges et des interfaces cyberpunk."
+              data-stack="CSS • Canvas • JavaScript"
+              data-status="Expérimentation visuelle">EXPLORER LE PROJET ↗</button>
+            <span class="project-index">03 / 03</span>
+          </div>
+        </div>
+      </article>
 
     </div>
 
     <div class="project-footer">
       <span class="project-dot"></span>
-      EXPERIMENTATION CONTINUE // KURO
+      KURO ARCHIVE // <span id="project-count">03 PROJECTS</span>
     </div>
-
   </div>
 </section>
+
+<dialog id="project-modal" class="project-modal">
+  <div class="project-modal-top">
+    <span>KURO // PROJECT DATA</span>
+    <button type="button" id="project-modal-close" aria-label="Fermer">✕</button>
+  </div>
+  <div class="project-modal-body">
+    <span class="project-eyebrow">SYSTEM FILE // DETAILS</span>
+    <h2 id="project-modal-title">KURO</h2>
+    <p id="project-modal-description"></p>
+    <div class="project-modal-row">
+      <span>TECHNOLOGIES</span>
+      <strong id="project-modal-stack"></strong>
+    </div>
+    <div class="project-modal-row">
+      <span>ÉTAT</span>
+      <strong id="project-modal-status"></strong>
+    </div>
+  </div>
+  <div class="project-modal-bottom">END OF FILE // KURO.EXE</div>
+</dialog>
 <!-- ===== END KURO — PROJETS ===== -->
 
+<script>
+(() => {
+  const section = document.getElementById('projets');
+  const modal = document.getElementById('project-modal');
+  if (!section || !modal || section.dataset.ready === 'true') return;
+  section.dataset.ready = 'true';
+
+  const cards = [...section.querySelectorAll('.project-card')];
+  const filters = [...section.querySelectorAll('.project-filter')];
+  const count = document.getElementById('project-count');
+
+  filters.forEach(button => {
+    button.addEventListener('click', () => {
+      const filter = button.dataset.filter;
+      filters.forEach(item => {
+        const active = item === button;
+        item.classList.toggle('is-active', active);
+        item.setAttribute('aria-pressed', String(active));
+      });
+
+      let visible = 0;
+      cards.forEach(card => {
+        const categories = (card.dataset.category || '').split(/\s+/);
+        const show = filter === 'all' || categories.includes(filter);
+        card.hidden = !show;
+        if (show) visible++;
+      });
+      if (count) count.textContent =
+        String(visible).padStart(2, '0') + ' PROJECTS';
+    });
+  });
+
+  const title = document.getElementById('project-modal-title');
+  const description = document.getElementById('project-modal-description');
+  const stack = document.getElementById('project-modal-stack');
+  const status = document.getElementById('project-modal-status');
+  const close = document.getElementById('project-modal-close');
+
+  section.querySelectorAll('.project-details').forEach(button => {
+    button.addEventListener('click', () => {
+      title.textContent = button.dataset.title || 'KURO PROJECT';
+      description.textContent = button.dataset.description || '';
+      stack.textContent = button.dataset.stack || 'Non précisé';
+      status.textContent = button.dataset.status || 'Non précisé';
+
+      if (typeof modal.showModal === 'function') {
+        modal.showModal();
+      } else {
+        alert(title.textContent + '\n\n' + description.textContent);
+      }
+    });
+  });
+
+  close.addEventListener('click', () => modal.close());
+  modal.addEventListener('click', event => {
+    if (event.target === modal) modal.close();
+  });
+  modal.addEventListener('close', () => {
+    const lastButton = section.querySelector('.project-details:focus');
+    if (lastButton) lastButton.focus();
+  });
+})();
+</script>
 
 <section class="section discord-portal" id="discord">
   <div class="wrap">
@@ -3456,169 +3580,165 @@ form.addEventListener('submit', e => {
   }
 }
 
-/* ===== KURO — PROJECTS ===== */
 
+/* ===== KURO — PROJECTS V2 ===== */
 #projets .project-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 32px;
-  margin-bottom: 34px;
+  display:flex; justify-content:space-between; align-items:end;
+  gap:30px; margin-bottom:28px;
 }
-
 #projets .project-eyebrow {
-  color: var(--red, #f01445);
-  font: 700 11px monospace;
-  letter-spacing: 3px;
+  color:#f01445; font:700 11px monospace; letter-spacing:3px;
 }
-
 #projets .project-heading h2 {
-  margin: 12px 0 0;
-  color: #f5f1f2;
-  font-size: clamp(36px, 5vw, 58px);
-  letter-spacing: -2px;
+  margin:12px 0 0; color:#f5f1f2;
+  font-size:clamp(36px,5vw,58px); letter-spacing:-2px;
 }
-
-#projets .project-heading h2 span {
-  color: var(--red, #f01445);
-}
-
+#projets .project-heading h2 span { color:#f01445; }
 #projets .project-heading > p {
-  max-width: 390px;
-  color: #aaa0a5;
-  font-size: 14px;
-  line-height: 1.8;
+  max-width:390px; color:#aaa0a5; font-size:14px; line-height:1.8;
 }
-
+#projets .project-filters {
+  display:flex; flex-wrap:wrap; gap:9px; margin-bottom:20px;
+}
+#projets .project-filter {
+  padding:10px 16px; color:#aaa0a5; background:rgba(8,6,9,.8);
+  border:1px solid rgba(255,255,255,.12); font:11px monospace;
+  letter-spacing:1px; cursor:pointer; transition:.2s ease;
+}
+#projets .project-filter:hover,
+#projets .project-filter.is-active {
+  color:#fff; border-color:#f01445;
+  background:rgba(240,20,69,.12);
+}
 #projets .project-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:17px;
+  align-items:stretch;
 }
-
 #projets .project-card {
-  position: relative;
-  overflow: hidden;
-  min-width: 0;
-  padding: 25px 22px;
-  background: rgba(13, 11, 12, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: transform .25s ease, border-color .25s ease,
-              box-shadow .25s ease;
+  min-width:0; overflow:hidden; position:relative;
+  background:rgba(10,8,10,.91);
+  border:1px solid rgba(255,255,255,.11);
+  transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
 }
-
-#projets .project-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 36px;
-  height: 2px;
-  background: var(--red, #f01445);
-  transition: width .3s ease;
-}
-
 #projets .project-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(240, 20, 69, 0.55);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  transform:translateY(-5px); border-color:rgba(240,20,69,.65);
+  box-shadow:0 15px 35px rgba(0,0,0,.3),0 0 22px rgba(240,20,69,.06);
 }
-
-#projets .project-card:hover::before {
-  width: 100%;
+#projets .project-card[hidden] { display:none !important; }
+#projets .project-featured {
+  grid-column:1/-1; display:grid; grid-template-columns:1.05fr 1fr;
 }
-
-#projets .project-number {
-  color: #8d8188;
-  font: 11px monospace;
-  letter-spacing: 1.5px;
+#projets .project-visual {
+  min-height:175px; position:relative; overflow:hidden;
+  display:grid; place-items:center;
+  background:
+    radial-gradient(ellipse at 50% 50%,rgba(240,20,69,.18),transparent 60%),
+    linear-gradient(135deg,#171014,#080609 70%);
+  border-bottom:1px solid rgba(240,20,69,.2);
 }
-
-#projets .project-icon {
-  display: grid;
-  place-items: center;
-  width: 52px;
-  height: 52px;
-  margin: 28px 0 20px;
-  color: var(--red, #f01445);
-  background: rgba(240, 20, 69, 0.07);
-  border: 1px solid rgba(240, 20, 69, 0.28);
-  font: 24px monospace;
+#projets .project-featured .project-visual { min-height:300px; border-bottom:0; border-right:1px solid rgba(240,20,69,.2); }
+#projets .project-visual-dev {
+  background:radial-gradient(ellipse at 50% 50%,rgba(160,20,45,.15),transparent 60%),#0a080b;
 }
-
-#projets .project-card h3 {
-  margin: 0 0 12px;
-  color: #f5f1f2;
-  font-size: 17px;
-  letter-spacing: .5px;
+#projets .project-visual-night {
+  background:radial-gradient(ellipse at 50% 70%,rgba(240,20,69,.2),transparent 60%),linear-gradient(160deg,#100b12,#050407);
 }
-
-#projets .project-card p {
-  min-height: 72px;
-  margin: 0 0 22px;
-  color: #aaa0a5;
-  font-size: 13px;
-  line-height: 1.8;
+#projets .project-visual-mark {
+  color:#f01445; font:clamp(60px,9vw,100px) monospace;
+  text-shadow:0 0 32px rgba(240,20,69,.3);
+  transition:transform .35s ease,text-shadow .35s ease;
 }
-
-#projets .project-tag {
-  color: var(--red, #f01445);
-  font: 700 10px monospace;
-  letter-spacing: 1.5px;
+#projets .project-card:hover .project-visual-mark {
+  transform:scale(1.08); text-shadow:0 0 42px rgba(240,20,69,.55);
 }
-
+#projets .project-visual-code {
+  position:absolute; left:17px; bottom:15px; color:#8c7e86;
+  font:10px monospace; letter-spacing:2px;
+}
+#projets .project-scan {
+  position:absolute; top:0; left:-100%; width:50%; height:100%;
+  background:linear-gradient(90deg,transparent,rgba(240,20,69,.08),transparent);
+  pointer-events:none; transition:left .6s ease;
+}
+#projets .project-card:hover .project-scan { left:130%; }
+#projets .project-content { padding:22px; min-width:0; }
+#projets .project-featured .project-content { display:flex; flex-direction:column; justify-content:center; padding:clamp(22px,4vw,42px); }
+#projets .project-meta { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:9px; }
+#projets .project-meta > span:first-child { color:#8d8188; font:10px monospace; letter-spacing:1.4px; }
+#projets .project-status { color:#d6cbd0; font:9px monospace; letter-spacing:1px; }
+#projets .project-status i {
+  display:inline-block; width:6px; height:6px; margin-right:5px;
+  background:#f01445; border-radius:50%; box-shadow:0 0 8px #f01445;
+}
+#projets .project-card h3 { margin:20px 0 10px; color:#f5f1f2; font-size:clamp(17px,2vw,24px); letter-spacing:.4px; }
+#projets .project-card p { margin:0 0 19px; color:#aaa0a5; font-size:13px; line-height:1.8; }
+#projets .project-tags { display:flex; flex-wrap:wrap; gap:7px; }
+#projets .project-tags span {
+  padding:6px 8px; color:#c4aab2; border:1px solid rgba(240,20,69,.22);
+  font:9px monospace; letter-spacing:1px;
+}
+#projets .project-actions {
+  display:flex; align-items:center; justify-content:space-between;
+  flex-wrap:wrap; gap:12px; margin-top:23px;
+}
+#projets .project-button {
+  padding:11px 13px; color:#fff; background:rgba(240,20,69,.09);
+  border:1px solid rgba(240,20,69,.55); font:10px monospace;
+  letter-spacing:.5px; cursor:pointer; transition:background .2s ease,box-shadow .2s ease;
+}
+#projets .project-button:hover { background:#c70d36; box-shadow:0 0 20px rgba(240,20,69,.2); }
+#projets .project-index { color:#796d75; font:10px monospace; }
 #projets .project-footer {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  margin-top: 22px;
-  color: #81757c;
-  font: 10px monospace;
-  letter-spacing: 1.5px;
+  display:flex; align-items:center; gap:9px; margin-top:22px;
+  color:#81757c; font:10px monospace; letter-spacing:1.5px;
 }
-
 #projets .project-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--red, #f01445);
-  box-shadow: 0 0 9px rgba(240, 20, 69, .6);
+  width:6px; height:6px; border-radius:50%; background:#f01445;
+  box-shadow:0 0 9px rgba(240,20,69,.6);
+}
+/* Modal de détails */
+#project-modal {
+  width:min(520px,calc(100% - 32px)); padding:0; color:#f5f1f2;
+  background:#0b080c; border:1px solid rgba(240,20,69,.55);
+  box-shadow:0 20px 80px #000;
+}
+#project-modal::backdrop { background:rgba(0,0,0,.78); backdrop-filter:blur(5px); }
+#project-modal .project-modal-top,
+#project-modal .project-modal-bottom {
+  display:flex; justify-content:space-between; gap:15px; padding:15px 20px;
+  color:#f01445; font:10px monospace; letter-spacing:1.5px;
+  border-bottom:1px solid rgba(240,20,69,.22);
+}
+#project-modal #project-modal-close {
+  color:#f5f1f2; background:transparent; border:0; cursor:pointer; font-size:16px;
+}
+#project-modal .project-modal-body { padding:28px 22px; }
+#project-modal h2 { margin:12px 0; font-size:clamp(24px,5vw,34px); overflow-wrap:anywhere; }
+#project-modal #project-modal-description { color:#b9adb4; font-size:14px; line-height:1.8; }
+#project-modal .project-modal-row {
+  display:grid; grid-template-columns:110px 1fr; gap:12px;
+  padding:13px 0; border-top:1px solid rgba(255,255,255,.08);
+  font:11px monospace; overflow-wrap:anywhere;
+}
+#project-modal .project-modal-row span { color:#8d8188; }
+#project-modal .project-modal-row strong { color:#f5f1f2; font-weight:400; }
+#project-modal .project-modal-bottom { border-top:1px solid rgba(240,20,69,.22); border-bottom:0; }
+@media(max-width:700px) {
+  #projets .project-heading { display:block; }
+  #projets .project-heading > p { margin-top:15px; }
+  #projets .project-featured { grid-template-columns:1fr; }
+  #projets .project-featured .project-visual { min-height:200px; border-right:0; border-bottom:1px solid rgba(240,20,69,.2); }
+}
+@media(max-width:460px) {
+  #projets .project-grid { grid-template-columns:1fr; }
+  #projets .project-featured { grid-column:auto; }
+  #projets .project-content { padding:19px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  #projets .project-card,#projets .project-visual-mark,#projets .project-scan,#projets .project-button { transition:none; }
+  #projets .project-card:hover { transform:none; }
 }
 
-@media (max-width: 800px) {
-  #projets .project-heading {
-    display: block;
-  }
-
-  #projets .project-heading > p {
-    margin-top: 18px;
-  }
-
-  #projets .project-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 520px) {
-  #projets .project-grid {
-    grid-template-columns: 1fr;
-  }
-
-  #projets .project-card p {
-    min-height: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  #projets .project-card,
-  #projets .project-card::before {
-    transition: none;
-  }
-
-  #projets .project-card:hover {
-    transform: none;
-  }
-}
  
 </style>
 
