@@ -4234,6 +4234,160 @@ form.addEventListener('submit', e => {
 </script>
 <!-- ═══ END NIGHT IDENTITY ═══ -->
 
+<!-- KURO.EXE // SYSTEM STATUS -->
+<style>
+  #kuro-system-status {
+    width: min(360px, calc(100% - 32px));
+    margin: 28px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    color: #f5efff;
+    background: rgba(8, 6, 9, 0.84);
+    border: 1px solid rgba(255, 25, 55, 0.45);
+    border-radius: 8px;
+    box-shadow: 0 0 24px rgba(255, 0, 40, 0.08);
+    font-family: monospace;
+    position: relative;
+    z-index: 6;
+  }
+
+  #kuro-system-status .kuro-status-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255, 25, 55, 0.25);
+  }
+
+  #kuro-system-status .kuro-status-title {
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.12em;
+  }
+
+  #kuro-system-status .kuro-status-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-right: 7px;
+    background: #ff1937;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff1937;
+    animation: kuro-status-pulse 1.8s infinite;
+  }
+
+  #kuro-system-status .kuro-status-online {
+    color: #ff526b;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  #kuro-system-status .kuro-status-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding-top: 15px;
+    font-size: 12px;
+  }
+
+  #kuro-system-status .kuro-status-label {
+    color: #9c929b;
+  }
+
+  #kuro-system-status .kuro-status-value {
+    color: #f5efff;
+    text-align: right;
+  }
+
+  #kuro-system-status .kuro-status-clock {
+    color: #ff1937;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  #kuro-system-status .kuro-status-footer {
+    margin-top: 17px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 25, 55, 0.2);
+    color: #766c76;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-align: center;
+  }
+
+  @keyframes kuro-status-pulse {
+    50% { opacity: 0.35; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #kuro-system-status .kuro-status-dot {
+      animation: none;
+    }
+  }
+</style>
+
+<section id="kuro-system-status" aria-label="KURO system status">
+  <div class="kuro-status-header">
+    <div class="kuro-status-title">KURO.EXE // STATUS</div>
+    <div class="kuro-status-online">
+      <span class="kuro-status-dot"></span>SYSTEM ONLINE
+    </div>
+  </div>
+
+  <div class="kuro-status-row">
+    <span class="kuro-status-label">VERSION</span>
+    <span class="kuro-status-value">v1.0.0</span>
+  </div>
+
+  <div class="kuro-status-row">
+    <span class="kuro-status-label">LOCAL TIME</span>
+    <time id="kuro-live-clock" class="kuro-status-clock">--:--:--</time>
+  </div>
+
+  <div class="kuro-status-row">
+    <span class="kuro-status-label">LOCAL DATE</span>
+    <time id="kuro-live-date" class="kuro-status-value">Loading...</time>
+  </div>
+
+  <div class="kuro-status-footer">
+    ENCRYPTED CONNECTION // KURO SYSTEMS
+  </div>
+</section>
+
+<script>
+(() => {
+  const clock = document.getElementById('kuro-live-clock');
+  const date = document.getElementById('kuro-live-date');
+
+  if (!clock || !date) return;
+
+  function updateKuroClock() {
+    const now = new Date();
+
+    clock.textContent = new Intl.DateTimeFormat('fr-FR', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    }).format(now);
+
+    date.textContent = new Intl.DateTimeFormat('fr-FR', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric'
+    }).format(now);
+  }
+
+  updateKuroClock();
+  window.setInterval(updateKuroClock, 1000);
+})();
+</script>
+<!-- END KURO.EXE // SYSTEM STATUS -->
+
 <section class="section" id="contact">
   <div class="wrap">
     <div class="section-head">
@@ -4606,160 +4760,6 @@ form.addEventListener('submit', e => {
 })();
 </script>
 <!-- END KURO // AWAKENING -->
-
-<!-- KURO.EXE // SYSTEM STATUS -->
-<style>
-  #kuro-system-status {
-    width: min(360px, calc(100% - 32px));
-    margin: 28px auto;
-    padding: 20px;
-    box-sizing: border-box;
-    color: #f5efff;
-    background: rgba(8, 6, 9, 0.84);
-    border: 1px solid rgba(255, 25, 55, 0.45);
-    border-radius: 8px;
-    box-shadow: 0 0 24px rgba(255, 0, 40, 0.08);
-    font-family: monospace;
-    position: relative;
-    z-index: 6;
-  }
-
-  #kuro-system-status .kuro-status-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid rgba(255, 25, 55, 0.25);
-  }
-
-  #kuro-system-status .kuro-status-title {
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: 0.12em;
-  }
-
-  #kuro-system-status .kuro-status-dot {
-    display: inline-block;
-    width: 7px;
-    height: 7px;
-    margin-right: 7px;
-    background: #ff1937;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #ff1937;
-    animation: kuro-status-pulse 1.8s infinite;
-  }
-
-  #kuro-system-status .kuro-status-online {
-    color: #ff526b;
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    white-space: nowrap;
-  }
-
-  #kuro-system-status .kuro-status-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    padding-top: 15px;
-    font-size: 12px;
-  }
-
-  #kuro-system-status .kuro-status-label {
-    color: #9c929b;
-  }
-
-  #kuro-system-status .kuro-status-value {
-    color: #f5efff;
-    text-align: right;
-  }
-
-  #kuro-system-status .kuro-status-clock {
-    color: #ff1937;
-    font-size: 16px;
-    font-weight: bold;
-    letter-spacing: 0.08em;
-    font-variant-numeric: tabular-nums;
-  }
-
-  #kuro-system-status .kuro-status-footer {
-    margin-top: 17px;
-    padding-top: 12px;
-    border-top: 1px solid rgba(255, 25, 55, 0.2);
-    color: #766c76;
-    font-size: 9px;
-    letter-spacing: 0.12em;
-    text-align: center;
-  }
-
-  @keyframes kuro-status-pulse {
-    50% { opacity: 0.35; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    #kuro-system-status .kuro-status-dot {
-      animation: none;
-    }
-  }
-</style>
-
-<section id="kuro-system-status" aria-label="KURO system status">
-  <div class="kuro-status-header">
-    <div class="kuro-status-title">KURO.EXE // STATUS</div>
-    <div class="kuro-status-online">
-      <span class="kuro-status-dot"></span>SYSTEM ONLINE
-    </div>
-  </div>
-
-  <div class="kuro-status-row">
-    <span class="kuro-status-label">VERSION</span>
-    <span class="kuro-status-value">v1.0.0</span>
-  </div>
-
-  <div class="kuro-status-row">
-    <span class="kuro-status-label">LOCAL TIME</span>
-    <time id="kuro-live-clock" class="kuro-status-clock">--:--:--</time>
-  </div>
-
-  <div class="kuro-status-row">
-    <span class="kuro-status-label">LOCAL DATE</span>
-    <time id="kuro-live-date" class="kuro-status-value">Loading...</time>
-  </div>
-
-  <div class="kuro-status-footer">
-    ENCRYPTED CONNECTION // KURO SYSTEMS
-  </div>
-</section>
-
-<script>
-(() => {
-  const clock = document.getElementById('kuro-live-clock');
-  const date = document.getElementById('kuro-live-date');
-
-  if (!clock || !date) return;
-
-  function updateKuroClock() {
-    const now = new Date();
-
-    clock.textContent = new Intl.DateTimeFormat('fr-FR', {
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit'
-    }).format(now);
-
-    date.textContent = new Intl.DateTimeFormat('fr-FR', {
-      day: '2-digit',
-      month: 'short',
-      year: 'numeric'
-    }).format(now);
-  }
-
-  updateKuroClock();
-  window.setInterval(updateKuroClock, 1000);
-})();
-</script>
-<!-- END KURO.EXE // SYSTEM STATUS -->
        
 </body>
 </html>
