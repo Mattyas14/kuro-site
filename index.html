@@ -2096,7 +2096,7 @@ body {
   <div class="wrap nav">
     <a class="brand glitch" href="#accueil" aria-label="KURO accueil">KURO <span>| 黒</span></a>
     <nav class="navlinks" id="navlinks" aria-label="Navigation principale">
-      <a href="#accueil" class="active">Accueil</a><a href="#univers">Univers</a><a href="#musique">Musique</a><a href="#discord">Discord</a><a href="#exe">KURO.EXE</a><a href="#rangs">Rangs</a>
+      <a href="#accueil" class="active">Accueil</a><a href="#univers">Univers</a><a href="#projets">Projets</a><a href="#musique">Musique</a><a href="#discord">Discord</a><a href="#exe">KURO.EXE</a><a href="#rangs">Rangs</a>
     </nav>
     <div class="navright"><button class="moon" id="themeBtn" aria-label="Changer de thème" title="Changer de thème">☾</button><button class="menu" id="menuBtn" aria-label="Ouvrir le menu">☰</button></div>
   </div>
@@ -2221,6 +2221,68 @@ body {
 </div>
   </div>
 </div></section>
+
+<!-- ===== KURO — PROJETS ===== -->
+<section id="projets" class="section">
+  <div class="wrap">
+
+    <div class="project-heading">
+      <div>
+        <span class="project-eyebrow">03 / PROJETS</span>
+        <h2>Mes <span>projets.</span></h2>
+      </div>
+      <p>
+        Des idées prennent forme dans l'ombre.
+        Bienvenue dans mes expérimentations.
+      </p>
+    </div>
+
+    <div class="project-grid">
+
+      <article class="project-card">
+        <span class="project-number">PROJECT_001</span>
+        <div class="project-icon">黒</div>
+        <h3>KURO.EXE</h3>
+        <p>
+          Un univers numérique noir et rouge,
+          entre identité japonaise et esthétique cyberpunk.
+        </p>
+        <span class="project-tag">WEB DESIGN</span>
+      </article>
+
+      <article class="project-card">
+        <span class="project-number">PROJECT_002</span>
+        <div class="project-icon">⌘</div>
+        <h3>KURO SYSTEMS</h3>
+        <p>
+          Des expérimentations en programmation,
+          automatisation et développement de bots.
+        </p>
+        <span class="project-tag">DEVELOPMENT</span>
+      </article>
+
+      <article class="project-card">
+        <span class="project-number">PROJECT_003</span>
+        <div class="project-icon">月</div>
+        <h3>23h53</h3>
+        <p>
+          Une création musicale nocturne entre piano,
+          ambiance urbaine et atmosphère mélancolique.
+        </p>
+        <span class="project-tag">MUSIC / AMBIENT</span>
+      </article>
+
+    </div>
+
+    <div class="project-footer">
+      <span class="project-dot"></span>
+      EXPERIMENTATION CONTINUE // KURO
+    </div>
+
+  </div>
+</section>
+<!-- ===== END KURO — PROJETS ===== -->
+
 
 <section class="section discord-portal" id="discord">
   <div class="wrap">
@@ -3384,6 +3446,170 @@ form.addEventListener('submit', e => {
   }
 
   #rangs .rank:hover {
+    transform: none;
+  }
+}
+
+/* ===== KURO — PROJECTS ===== */
+
+#projets .project-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 32px;
+  margin-bottom: 34px;
+}
+
+#projets .project-eyebrow {
+  color: var(--red, #f01445);
+  font: 700 11px monospace;
+  letter-spacing: 3px;
+}
+
+#projets .project-heading h2 {
+  margin: 12px 0 0;
+  color: #f5f1f2;
+  font-size: clamp(36px, 5vw, 58px);
+  letter-spacing: -2px;
+}
+
+#projets .project-heading h2 span {
+  color: var(--red, #f01445);
+}
+
+#projets .project-heading > p {
+  max-width: 390px;
+  color: #aaa0a5;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+#projets .project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+#projets .project-card {
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+  padding: 25px 22px;
+  background: rgba(13, 11, 12, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform .25s ease, border-color .25s ease,
+              box-shadow .25s ease;
+}
+
+#projets .project-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 2px;
+  background: var(--red, #f01445);
+  transition: width .3s ease;
+}
+
+#projets .project-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(240, 20, 69, 0.55);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+#projets .project-card:hover::before {
+  width: 100%;
+}
+
+#projets .project-number {
+  color: #8d8188;
+  font: 11px monospace;
+  letter-spacing: 1.5px;
+}
+
+#projets .project-icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin: 28px 0 20px;
+  color: var(--red, #f01445);
+  background: rgba(240, 20, 69, 0.07);
+  border: 1px solid rgba(240, 20, 69, 0.28);
+  font: 24px monospace;
+}
+
+#projets .project-card h3 {
+  margin: 0 0 12px;
+  color: #f5f1f2;
+  font-size: 17px;
+  letter-spacing: .5px;
+}
+
+#projets .project-card p {
+  min-height: 72px;
+  margin: 0 0 22px;
+  color: #aaa0a5;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+#projets .project-tag {
+  color: var(--red, #f01445);
+  font: 700 10px monospace;
+  letter-spacing: 1.5px;
+}
+
+#projets .project-footer {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 22px;
+  color: #81757c;
+  font: 10px monospace;
+  letter-spacing: 1.5px;
+}
+
+#projets .project-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--red, #f01445);
+  box-shadow: 0 0 9px rgba(240, 20, 69, .6);
+}
+
+@media (max-width: 800px) {
+  #projets .project-heading {
+    display: block;
+  }
+
+  #projets .project-heading > p {
+    margin-top: 18px;
+  }
+
+  #projets .project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  #projets .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #projets .project-card p {
+    min-height: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #projets .project-card,
+  #projets .project-card::before {
+    transition: none;
+  }
+
+  #projets .project-card:hover {
     transform: none;
   }
 }
