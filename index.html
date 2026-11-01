@@ -2078,21 +2078,24 @@ body {
   isolation: isolate;
 }
 
-/* Image commune à toute la page */
-body::before {
-  content: "";
+
+/* ===== KURO — FOND GLOBAL ===== */
+body {
+  position: relative;
+  background-color: #080609;
+}
+
+body .kuro-background-layer {
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-
   background:
     linear-gradient(
       rgba(5, 3, 6, 0.55),
       rgba(5, 3, 6, 0.68)
     ),
     url("kuro-background.png") center center / cover no-repeat;
-
   background-color: #080609;
 }
 
@@ -2717,6 +2720,10 @@ body::after {
 </style>
 </head>
 <body>
+<body>
+  <div class="kuro-background-layer" aria-hidden="true"></div>
+
+  <!-- Le reste de ton site KURO commence ici -->
 <header>
   <div class="wrap nav">
     <a class="brand glitch" href="#accueil" aria-label="KURO accueil">KURO <span>| 黒</span></a>
