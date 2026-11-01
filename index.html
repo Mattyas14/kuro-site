@@ -5762,96 +5762,185 @@ form.addEventListener('submit', e => {
 </script>
 <!-- END KURO / PARALLAX -->
 
-<!-- KURO // AWAKENING -->
+
+<!-- ===== KURO.EXE // CHAPTER 00 ===== -->
 <style>
   #kuro-awakening {
     position: fixed;
     inset: 0;
-    z-index: 99999;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    z-index: 100000;
+    display: grid;
+    place-items: center;
     overflow: hidden;
-    background: #050405;
+    padding: 24px;
+    box-sizing: border-box;
     color: #f5efff;
+    background:
+      radial-gradient(ellipse at 50% 38%, rgba(105, 0, 25, .24), transparent 52%),
+      #050406;
     font-family: monospace;
     opacity: 1;
-    visibility: visible;
-    transition: opacity 0.8s ease, visibility 0.8s ease;
+    transition: opacity .8s ease, visibility .8s ease;
   }
 
-  #kuro-awakening.kuro-exit {
+  #kuro-awakening.kuro-intro-hidden {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
   }
 
-  #kuro-awakening .kuro-moon {
+  #kuro-awakening .kuro-story {
+    position: relative;
+    z-index: 2;
+    width: min(680px, 100%);
+    text-align: center;
+  }
+
+  #kuro-awakening .kuro-story-label {
+    color: #ff1937;
+    font-size: 10px;
+    letter-spacing: .25em;
+    margin-bottom: 32px;
+  }
+
+  #kuro-awakening .kuro-story-scene {
+    min-height: 170px;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: 20px;
+  }
+
+  #kuro-awakening .kuro-story-moon {
     width: 76px;
     height: 76px;
     border-radius: 50%;
-    background: #c60028;
-    box-shadow: 0 0 25px #c6002866, 0 0 90px #c6002844;
-    animation: kuro-moon-in 1.1s ease-out both;
+    background: #b5082a;
+    box-shadow:
+      0 0 25px rgba(255, 15, 55, .35),
+      0 0 90px rgba(255, 15, 55, .12);
+    animation: kuro-moon-breathe 3s ease-in-out infinite;
   }
 
-  #kuro-awakening .kuro-title {
-    margin-top: 30px;
-    font-size: clamp(28px, 7vw, 58px);
-    font-weight: 900;
-    letter-spacing: 0.3em;
-    text-indent: 0.3em;
-    animation: kuro-title-in 0.8s 0.5s both;
+  #kuro-awakening .kuro-story-kanji {
+    color: rgba(255, 25, 55, .16);
+    font-size: clamp(90px, 20vw, 150px);
+    line-height: 1;
   }
 
-  #kuro-awakening .kuro-status {
-    margin-top: 18px;
-    color: #d7193f;
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    animation: kuro-title-in 0.5s 1s both;
+  #kuro-awakening .kuro-story-title {
+    margin: 0;
+    font-size: clamp(34px, 8vw, 66px);
+    letter-spacing: .06em;
+    line-height: 1.1;
+    overflow-wrap: anywhere;
   }
 
-  #kuro-awakening .kuro-line {
-    width: min(240px, 65vw);
-    height: 1px;
-    margin-top: 24px;
-    background: #c60028;
-    transform: scaleX(0);
-    animation: kuro-line-in 0.7s 1s ease-out forwards;
+  #kuro-awakening .kuro-story-title span {
+    color: #ff1937;
   }
 
-  #kuro-awakening .kuro-skip {
-    position: absolute;
-    bottom: 28px;
-    right: 24px;
-    padding: 10px 14px;
-    border: 1px solid #ffffff30;
-    background: transparent;
-    color: #aaa;
+  #kuro-awakening .kuro-story-text {
+    min-height: 76px;
+    max-width: 570px;
+    margin: 24px auto 0;
+    color: #bdb3bc;
+    font-family: sans-serif;
+    font-size: clamp(14px, 2.5vw, 17px);
+    line-height: 1.9;
+  }
+
+  #kuro-awakening .kuro-story-text strong {
+    color: #f5efff;
+    font-weight: 500;
+  }
+
+  #kuro-awakening .kuro-story-progress {
+    height: 2px;
+    width: min(300px, 80%);
+    margin: 28px auto 12px;
+    background: #251018;
+    overflow: hidden;
+  }
+
+  #kuro-awakening .kuro-story-progress span {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: #ff1937;
+    box-shadow: 0 0 12px #ff1937;
+    transition: width .5s ease;
+  }
+
+  #kuro-awakening .kuro-story-status {
+    color: #766a73;
+    font-size: 10px;
+    letter-spacing: .14em;
+  }
+
+  #kuro-awakening .kuro-story-enter {
+    margin-top: 28px;
+    padding: 13px 20px;
+    border: 1px solid rgba(255, 25, 55, .6);
+    background: rgba(255, 25, 55, .06);
+    color: #f5efff;
     font: inherit;
     font-size: 11px;
+    letter-spacing: .12em;
+    cursor: pointer;
+    transition: background .2s, box-shadow .2s;
+  }
+
+  #kuro-awakening .kuro-story-enter:hover,
+  #kuro-awakening .kuro-story-enter:focus-visible {
+    background: rgba(255, 25, 55, .16);
+    box-shadow: 0 0 22px rgba(255, 25, 55, .18);
+    outline: 1px solid #ff1937;
+    outline-offset: 3px;
+  }
+
+  #kuro-awakening .kuro-story-skip {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #94858e;
+    background: transparent;
+    border: 0;
+    padding: 12px;
+    font: inherit;
+    font-size: 10px;
     cursor: pointer;
   }
 
-  #kuro-awakening .kuro-skip:hover {
-    border-color: #c60028;
-    color: white;
+  #kuro-awakening .kuro-story-skip:hover {
+    color: #ff526b;
   }
 
-  @keyframes kuro-moon-in {
-    from { opacity: 0; transform: scale(0.45); }
-    to { opacity: 1; transform: scale(1); }
+  #kuro-awakening .kuro-story-corner {
+    position: absolute;
+    bottom: 22px;
+    left: 24px;
+    right: 24px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    color: #5f535c;
+    font-size: 9px;
+    letter-spacing: .1em;
   }
 
-  @keyframes kuro-title-in {
+  #kuro-awakening .kuro-story-scene,
+  #kuro-awakening .kuro-story-text {
+    animation: kuro-story-appear .7s ease both;
+  }
+
+  @keyframes kuro-story-appear {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  @keyframes kuro-line-in {
-    to { transform: scaleX(1); }
+  @keyframes kuro-moon-breathe {
+    50% { box-shadow: 0 0 42px rgba(255, 15, 55, .55), 0 0 100px rgba(255, 15, 55, .18); }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -5863,60 +5952,172 @@ form.addEventListener('submit', e => {
   }
 </style>
 
-<div id="kuro-awakening" aria-label="KURO system initialization">
-  <div class="kuro-moon"></div>
-  <div class="kuro-title">KURO.EXE</div>
-  <div class="kuro-status">SYSTEM AWAKENING // 01</div>
-  <div class="kuro-line"></div>
-  <button class="kuro-skip" type="button">SKIP INTRO ↗</button>
+<div id="kuro-awakening" role="dialog"
+     aria-modal="true" aria-label="KURO.EXE — The Awakening">
+  <button class="kuro-story-skip" id="kuro-story-skip" type="button">
+    PASSER L'INTRO ↗
+  </button>
+
+  <div class="kuro-story">
+    <div class="kuro-story-label" id="kuro-story-label">
+      TOKYO // 00:00 — ARCHIVE 000
+    </div>
+
+    <div class="kuro-story-scene" id="kuro-story-scene">
+      <div class="kuro-story-moon" aria-hidden="true"></div>
+    </div>
+
+    <h1 class="kuro-story-title" id="kuro-story-title">
+      CHAPTER <span>00</span>
+    </h1>
+
+    <p class="kuro-story-text" id="kuro-story-text" aria-live="polite">
+      La ville ne dort jamais. Elle a simplement appris à cacher ses ténèbres.
+    </p>
+
+    <div class="kuro-story-progress" aria-hidden="true">
+      <span id="kuro-story-bar"></span>
+    </div>
+
+    <div class="kuro-story-status" id="kuro-story-status">
+      ARCHIVE 01 // LE SILENCE
+    </div>
+
+    <button class="kuro-story-enter" id="kuro-story-enter" type="button">
+      CONTINUER L'HISTOIRE ↓
+    </button>
+  </div>
+
+  <div class="kuro-story-corner">
+    <span>KURO.EXE // STORY MODE</span>
+    <span>二つの顔 — 一つの存在</span>
+  </div>
 </div>
 
 <script>
 (() => {
   const intro = document.getElementById('kuro-awakening');
-  if (!intro) return;
+  if (!intro || intro.dataset.initialized) return;
+  intro.dataset.initialized = 'true';
 
-  const skip = intro.querySelector('.kuro-skip');
-  const reduceMotion = window.matchMedia(
+  const label = document.getElementById('kuro-story-label');
+  const scene = document.getElementById('kuro-story-scene');
+  const title = document.getElementById('kuro-story-title');
+  const text = document.getElementById('kuro-story-text');
+  const bar = document.getElementById('kuro-story-bar');
+  const status = document.getElementById('kuro-story-status');
+  const next = document.getElementById('kuro-story-enter');
+  const skip = document.getElementById('kuro-story-skip');
+
+  const reducedMotion = window.matchMedia(
     '(prefers-reduced-motion: reduce)'
-  );
+  ).matches;
 
-  let finished = false;
-  let timer;
+  const chapters = [
+    {
+      label: 'TOKYO // 00:00 — ARCHIVE 000',
+      scene: '<div class="kuro-story-moon" aria-hidden="true"></div>',
+      title: 'CHAPTER <span>00</span>',
+      text: 'La ville ne dort jamais. Elle a simplement appris à cacher ses ténèbres.',
+      status: 'ARCHIVE 01 // LE SILENCE'
+    },
+    {
+      label: 'SIGNAL DETECTED // UNKNOWN ORIGIN',
+      scene: '<div class="kuro-story-kanji" aria-hidden="true">影</div>',
+      title: 'UNE <span>ANOMALIE.</span>',
+      text: 'Une nuit, un signal inconnu est apparu dans le réseau. Aucun nom. Aucun visage. Seulement une présence.',
+      status: 'ARCHIVE 02 // LE SIGNAL'
+    },
+    {
+      label: 'IDENTITY FOUND // DUAL NATURE',
+      scene: '<div class="kuro-story-kanji" aria-hidden="true">黒</div>',
+      title: 'DEUX FACES<span>.</span>',
+      text: 'La lumière révèle une part de nous. L’ombre en révèle une autre. Aucune ne raconte toute l’histoire.',
+      status: 'ARCHIVE 03 // L'ÉVEIL'
+    },
+    {
+      label: 'SYSTEM ONLINE // KURO.EXE',
+      scene: '<div class="kuro-story-moon" aria-hidden="true"></div>',
+      title: 'KURO<span>.EXE</span>',
+      text: 'Le signal est devenu un monde. Une communauté, des sons, des créations. <strong>La suite appartient à ceux qui entrent.</strong>',
+      status: 'CONNEXION ÉTABLIE // BIENVENUE'
+    }
+  ];
+
+  let step = 0;
+  let closed = false;
+  let timer = null;
+
+  function render() {
+    const chapter = chapters[step];
+
+    label.textContent = chapter.label;
+    scene.innerHTML = chapter.scene;
+    title.innerHTML = chapter.title;
+    text.innerHTML = chapter.text;
+    status.textContent = chapter.status;
+    bar.style.width = ((step + 1) / chapters.length * 100) + '%';
+
+    next.textContent = step === chapters.length - 1
+      ? 'ENTRER DANS KURO ↗'
+      : 'CONTINUER L’HISTOIRE ↓';
+
+    if (step === chapters.length - 1) {
+      label.textContent = chapter.label;
+    }
+  }
 
   function closeIntro() {
-    if (finished) return;
-    finished = true;
+    if (closed) return;
+    closed = true;
     clearTimeout(timer);
-    intro.classList.add('kuro-exit');
+
+    try {
+      sessionStorage.setItem('kuroAwakeningSeen', '1');
+    } catch (_) {}
+
+    intro.classList.add('kuro-intro-hidden');
 
     window.setTimeout(() => {
       intro.remove();
-    }, reduceMotion.matches ? 0 : 850);
+    }, reducedMotion ? 0 : 850);
   }
 
-  skip.addEventListener('click', closeIntro);
+  function advance() {
+    if (closed) return;
 
-  if (reduceMotion.matches) {
-    closeIntro();
-    return;
-  }
-
-  // Show the intro only once per browser tab session.
-  try {
-    if (sessionStorage.getItem('kuroAwakened') === '1') {
+    if (step >= chapters.length - 1) {
       closeIntro();
       return;
     }
-    sessionStorage.setItem('kuroAwakened', '1');
-  } catch (error) {
-    // Continue normally if browser storage is unavailable.
+
+    step++;
+    render();
   }
 
-  timer = window.setTimeout(closeIntro, 2800);
+  next.addEventListener('click', advance);
+  skip.addEventListener('click', closeIntro);
+
+  try {
+    if (sessionStorage.getItem('kuroAwakeningSeen') === '1') {
+      intro.remove();
+      return;
+    }
+  } catch (_) {}
+
+  render();
+
+  if (reducedMotion) {
+    next.textContent = 'ENTRER DANS KURO ↗';
+    next.addEventListener('click', closeIntro, { once: true });
+  } else {
+    // L'intro ne bloque jamais le visiteur indéfiniment.
+    timer = window.setTimeout(closeIntro, 18000);
+  }
 })();
 </script>
-<!-- END KURO // AWAKENING -->
+<!-- ===== END KURO CHAPTER 00 ===== -->
+
 <footer><div class="wrap foot"><div><strong>KURO <span class="jp">| 黒</span></strong> — Community • Music • Night</div><div>Fait dans l'ombre. <span class="jp">もっと深くへ。</span></div><div>© <span id="year"></span> KURO. Tous droits réservés.</div></div></footer>
 <div class="toast" id="toast" role="status"></div>
 
