@@ -2212,6 +2212,57 @@ body {
   }
 }
 
+/* ===== KURO HERO — ALIGNEMENT FINAL ===== */
+#accueil.kuro-hero {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#accueil .kuro-hero-content {
+  display: block;
+  width: 100%;
+  max-width: 850px;
+  margin-left: 0;
+  margin-right: auto;
+  box-sizing: border-box;
+  transform: none;
+}
+
+#accueil .kuro-hero-title {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+#accueil .kuro-hero-description {
+  max-width: 620px;
+}
+
+#accueil .kuro-hero-actions,
+#accueil .kuro-hero-coordinates {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  #accueil.kuro-hero {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  #accueil .kuro-hero-content {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  #accueil .kuro-hero-title {
+    font-size: clamp(58px, 16vw, 100px);
+    gap: 10px;
+  }
+}
+/* ===== END ALIGNEMENT ===== */
+
 </style>
 </head>
 <body>
