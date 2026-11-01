@@ -5994,11 +5994,101 @@ form.addEventListener('submit', e => {
   </div>
 </div>
 
+<script>
+(() => {
+  const intro = document.getElementById('kuro-awakening');
+  if (!intro || intro.dataset.initialized) return;
+  intro.dataset.initialized = 'true';
+
+  const label = document.getElementById('kuro-story-label');
+  const scene = document.getElementById('kuro-story-scene');
+  const title = document.getElementById('kuro-story-title');
+  const text = document.getElementById('kuro-story-text');
+  const bar = document.getElementById('kuro-story-bar');
+  const status = document.getElementById('kuro-story-status');
+  const next = document.getElementById('kuro-story-enter');
+  const skip = document.getElementById('kuro-story-skip');
+
+  const reducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches;
+
+  const chapters = [
+    {
+      label: 'TOKYO // 00:00 — ARCHIVE 000',
+      scene: '<div class="kuro-story-moon" aria-hidden="true"></div>',
+      title: 'CHAPTER <span>00</span>',
+      text: 'La ville ne dort jamais. Elle a simplement appris à cacher ses ténèbres.',
+      status: 'ARCHIVE 01 // LE SILENCE'
+    },
+    {
+      label: 'SIGNAL DETECTED // UNKNOWN ORIGIN',
+      scene: '<div class="kuro-story-kanji" aria-hidden="true">影</div>',
+      title: 'UNE <span>ANOMALIE.</span>',
+      text: 'Une nuit, un signal inconnu est apparu dans le réseau. Aucun nom. Aucun visage. Seulement une présence.',
+      status: 'ARCHIVE 02 // LE SIGNAL'
+    },
+    {
+      label: 'IDENTITY FOUND // DUAL NATURE',
+      scene: '<div class="kuro-story-kanji" aria-hidden="true">黒</div>',
+      title: 'DEUX FACES<span>.</span>',
+      text: 'La lumière révèle une part de nous. L’ombre en révèle une autre. Aucune ne raconte toute l’histoire.',
+      status: 'ARCHIVE 03 // L'ÉVEIL'
+    },
+    {
+      label: 'SYSTEM ONLINE // KURO.EXE',
+      scene: '<div class="kuro-story-moon" aria-hidden="true"></div>',
+      title: 'KURO<span>.EXE</span>',
+      text: 'Le signal est devenu un monde. Une communauté, des sons, des créations. <strong>La suite appartient à ceux qui entrent.</strong>',
+      status: 'CONNEXION ÉTABLIE // BIENVENUE'
+    }
+  ];
+
+  let step = 0;
+  let closed = false;
+  let timer = null;
+
+  function render() {
+    const chapter = chapters[step];
+
+    label.textContent = chapter.label;
+    scene.innerHTML = chapter.scene;
+    title.innerHTML = chapter.title;
+    text.innerHTML = chapter.text;
+    status.textContent = chapter.status;
+    bar.style.width = ((step + 1) / chapters.length * 100) + '%';
+
+    next.textContent = step === chapters.length - 1
+      ? 'ENTRER DANS KURO ↗'
+      : 'CONTINUER L’HISTOIRE ↓';
+
+    if (step === chapters.length - 1) {
+      label.textContent = chapter.label;
+    }
+  }
+
+  function closeIntro() {
+    if (closed) return;
+    closed = true;
+    clearTimeout(timer);
+
+    try {
+      sessionStorage.setItem('kuroAwakeningSeen', '1');
+    } catch (_) {}
+
+    intro.classList.add('kuro-intro-hidden');
+
+    window.setTimeout(() => {
+      intro.remove();
+    }, reducedMotion ? 0 : 850);
+  }
+
 
 <script>
 (() => {
   const intro = document.getElementById('kuro-awakening');
-  if (!intro) return;
+  if (!intro || intro.dataset.storyFixed === 'true') return;
+  intro.dataset.storyFixed = 'true';
 
   const label = intro.querySelector('#kuro-story-label');
   const scene = intro.querySelector('#kuro-story-scene');
@@ -6009,9 +6099,8 @@ form.addEventListener('submit', e => {
   const next = intro.querySelector('#kuro-story-enter');
   const skip = intro.querySelector('#kuro-story-skip');
 
-  if (!label || !scene || !title || !storyText ||
-      !bar || !status || !next || !skip) {
-    console.error('KURO : élément de narration manquant.');
+  if (!label || !scene || !title || !storyText || !bar || !status || !next || !skip) {
+    console.error('KURO: élément de narration introuvable.');
     return;
   }
 
@@ -6048,7 +6137,7 @@ form.addEventListener('submit', e => {
 
   let step = 0;
   let closed = false;
-  let timer = null;
+  let timer;
 
   function render() {
     const chapter = chapters[step];
@@ -6060,13 +6149,11 @@ form.addEventListener('submit', e => {
     title.innerHTML = chapter.title;
     storyText.textContent = chapter.text;
     status.textContent = chapter.status;
-    bar.style.width =
-      ((step + 1) / chapters.length * 100) + '%';
+    bar.style.width = ((step + 1) / chapters.length * 100) + '%';
 
-    next.textContent =
-      step === chapters.length - 1
-        ? 'ENTRER DANS KURO ↗'
-        : 'CONTINUER L’HISTOIRE ↓';
+    next.textContent = step === chapters.length - 1
+      ? 'ENTRER DANS KURO ↗'
+      : 'CONTINUER L’HISTOIRE ↓';
   }
 
   function closeIntro() {
@@ -6080,10 +6167,7 @@ form.addEventListener('submit', e => {
 
     intro.classList.add('kuro-intro-hidden');
     intro.style.pointerEvents = 'none';
-
-    window.setTimeout(() => {
-      intro.remove();
-    }, 850);
+    window.setTimeout(() => intro.remove(), 850);
   }
 
   next.addEventListener('click', event => {
@@ -6096,7 +6180,7 @@ form.addEventListener('submit', e => {
       step++;
       render();
       clearTimeout(timer);
-      timer = window.setTimeout(closeIntro, 20000);
+      timer = window.setTimeout(closeIntro, 15000);
     } else {
       closeIntro();
     }
@@ -6109,11 +6193,9 @@ form.addEventListener('submit', e => {
   });
 
   render();
-  timer = window.setTimeout(closeIntro, 30000);
+  timer = window.setTimeout(closeIntro, 20000);
 })();
 </script>
-<!-- ===== END KURO CHAPTER 00 ===== -->
-
 <!-- ===== END KURO CHAPTER 00 ===== -->
 
 <footer><div class="wrap foot"><div><strong>KURO <span class="jp">| 黒</span></strong> — Community • Music • Night</div><div>Fait dans l'ombre. <span class="jp">もっと深くへ。</span></div><div>© <span id="year"></span> KURO. Tous droits réservés.</div></div></footer>
@@ -6199,6 +6281,43 @@ form.addEventListener('submit', e => {
       transform: scale(1.18);
     }
   }
+
+/* ===== KURO TOKYO AFTER DARK — fond immersif + parallaxe douce ===== */
+#accueil.kuro-hero .kuro-hero-atmosphere::before {
+  content: "";
+  position: absolute;
+  inset: -2.5%;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(90deg, rgba(5,4,7,.88) 0%, rgba(5,4,7,.62) 42%, rgba(5,4,7,.18) 100%),
+    linear-gradient(0deg, rgba(5,4,7,.78) 0%, transparent 45%, rgba(5,4,7,.16) 100%),
+    url("kuro-tokyo-after-dark.jpg");
+  background-size: cover;
+  background-position: center 52%;
+  transform: translate3d(var(--kuro-parallax-x, 0px), var(--kuro-parallax-y, 0px), 0) scale(1.04);
+  will-change: transform;
+  transition: transform .18s ease-out;
+}
+#accueil.kuro-hero .kuro-hero-moon { opacity: .16; }
+#accueil.kuro-hero .kuro-hero-skyline { opacity: .14; }
+#accueil.kuro-hero .kuro-hero-grid { opacity: .07; }
+@media (max-width: 600px) {
+  #accueil.kuro-hero .kuro-hero-atmosphere::before {
+    background-position: 56% center;
+    background-image:
+      linear-gradient(90deg, rgba(5,4,7,.78), rgba(5,4,7,.34)),
+      linear-gradient(0deg, rgba(5,4,7,.78), transparent 70%),
+      url("kuro-tokyo-after-dark.jpg");
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #accueil.kuro-hero .kuro-hero-atmosphere::before {
+    transform: none !important;
+    transition: none;
+  }
+}
+/* ===== FIN DU FOND TOKYO AFTER DARK ===== */
 </style>
 
 <script>
@@ -6319,5 +6438,36 @@ form.addEventListener('submit', e => {
 </script>
 <!-- END KURO REVEAL -->
   
+
+<!-- KURO — parallaxe douce du fond d’accueil -->
+<script>
+(() => {
+  const hero = document.querySelector('#accueil.kuro-hero');
+  const atmosphere = hero && hero.querySelector('.kuro-hero-atmosphere');
+  if (!hero || !atmosphere) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (reduceMotion || !finePointer) return;
+
+  let frame = 0;
+  hero.addEventListener('pointermove', event => {
+    const rect = hero.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(() => {
+      atmosphere.style.setProperty('--kuro-parallax-x', `${-x * 10}px`);
+      atmosphere.style.setProperty('--kuro-parallax-y', `${-y * 8}px`);
+    });
+  }, { passive: true });
+
+  hero.addEventListener('pointerleave', () => {
+    atmosphere.style.setProperty('--kuro-parallax-x', '0px');
+    atmosphere.style.setProperty('--kuro-parallax-y', '0px');
+  }, { passive: true });
+})();
+</script>
+<!-- FIN KURO — parallaxe douce -->
 </body>
 </html>
