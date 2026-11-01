@@ -2726,8 +2726,13 @@ body::after {
   <!-- Le reste de ton site KURO commence ici -->
 <header>
   <div class="wrap nav">
-    <a class="brand" href="#accueil" aria-label="KURO accueil">
-  <img src="kuro-oni.png" alt="KURO" class="kuro-logo">
+    <a class="brand kuro-brand" href="#accueil" aria-label="KURO accueil">
+  <img src="kuro-oni.png" alt="" class="kuro-logo">
+  <span class="kuro-wordmark">
+    <span class="kuro-name">KURO</span>
+    <span class="kuro-divider">|</span>
+    <span class="kuro-kanji">黒</span>
+  </span>
 </a>
     <nav class="navlinks" id="navlinks" aria-label="Navigation principale">
       <a href="#accueil" class="active">Accueil</a><a href="#univers">Univers</a><a href="#projets">Projets</a><a href="#musique">Musique</a><a href="#discord">Discord</a><a href="#exe">KURO.EXE</a><a href="#rangs">Rangs</a>
@@ -4716,6 +4721,77 @@ form.addEventListener('submit', e => {
   transform: scale(1.08);
   filter: drop-shadow(0 0 12px rgba(255, 23, 61, 0.9));
 } 
+/* ===== KURO — LOGO ONI + WORDMARK ===== */
+
+header .kuro-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+header .kuro-brand .kuro-logo {
+  display: block;
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  transition: transform 0.25s ease, filter 0.25s ease;
+  filter: drop-shadow(0 0 6px rgba(255, 23, 61, 0.55));
+}
+
+header .kuro-wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+header .kuro-name {
+  color: #f5f2f4;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.12);
+}
+
+header .kuro-divider {
+  color: #6b1022;
+}
+
+header .kuro-kanji {
+  color: #ff173d;
+  text-shadow:
+    0 0 5px rgba(255, 23, 61, 0.85),
+    0 0 14px rgba(255, 23, 61, 0.45);
+}
+
+header .kuro-brand:hover .kuro-logo {
+  transform: scale(1.07);
+  filter: drop-shadow(0 0 11px rgba(255, 23, 61, 0.9));
+}
+
+header .kuro-brand:hover .kuro-name {
+  text-shadow: 0 0 10px rgba(255, 23, 61, 0.55);
+}
+
+@media (max-width: 600px) {
+  header .kuro-brand {
+    gap: 6px;
+  }
+
+  header .kuro-brand .kuro-logo {
+    width: 36px;
+    height: 36px;
+  }
+
+  header .kuro-wordmark {
+    font-size: 16px;
+    gap: 5px;
+    letter-spacing: 1px;
+  }
+}
 </style>
 
 <script>
