@@ -2089,6 +2089,69 @@ body {
   }
 }
 
+/* ===== KURO HERO — LAYOUT FIX ===== */
+#accueil.hero {
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+#accueil.hero > .wrap {
+  width: min(100% - 64px, 1200px);
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+#accueil .hero-side-label {
+  right: 18px;
+}
+
+#accueil .hero .glitch,
+#accueil .glitch {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+#accueil .hero-description,
+#accueil .wrap > p {
+  max-width: 590px;
+}
+
+#accueil .actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+#accueil .hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 22px;
+}
+
+@media (max-width: 600px) {
+  #accueil.hero > .wrap {
+    width: calc(100% - 40px);
+  }
+
+  #accueil .glitch {
+    font-size: clamp(58px, 16vw, 100px);
+    letter-spacing: -0.06em;
+  }
+
+  #accueil .actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  #accueil .actions .btn {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+/* ===== END HERO FIX ===== */
+
 </style>
 </head>
 <body>
