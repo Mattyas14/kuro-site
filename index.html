@@ -6083,37 +6083,117 @@ form.addEventListener('submit', e => {
     }, reducedMotion ? 0 : 850);
   }
 
-  function advance() {
+
+<script>
+(() => {
+  const intro = document.getElementById('kuro-awakening');
+  if (!intro || intro.dataset.storyFixed === 'true') return;
+  intro.dataset.storyFixed = 'true';
+
+  const label = intro.querySelector('#kuro-story-label');
+  const scene = intro.querySelector('#kuro-story-scene');
+  const title = intro.querySelector('#kuro-story-title');
+  const storyText = intro.querySelector('#kuro-story-text');
+  const bar = intro.querySelector('#kuro-story-bar');
+  const status = intro.querySelector('#kuro-story-status');
+  const next = intro.querySelector('#kuro-story-enter');
+  const skip = intro.querySelector('#kuro-story-skip');
+
+  if (!label || !scene || !title || !storyText || !bar || !status || !next || !skip) {
+    console.error('KURO: élément de narration introuvable.');
+    return;
+  }
+
+  const chapters = [
+    {
+      label: 'TOKYO // 00:00 — ARCHIVE 000',
+      symbol: '月',
+      title: 'CHAPTER <span>00</span>',
+      text: 'La ville ne dort jamais. Elle a simplement appris à cacher ses ténèbres.',
+      status: 'ARCHIVE 01 // LE SILENCE'
+    },
+    {
+      label: 'SIGNAL DETECTED // UNKNOWN ORIGIN',
+      symbol: '影',
+      title: 'UNE <span>ANOMALIE.</span>',
+      text: 'Une nuit, un signal inconnu est apparu dans le réseau. Aucun nom. Aucun visage. Seulement une présence.',
+      status: 'ARCHIVE 02 // LE SIGNAL'
+    },
+    {
+      label: 'IDENTITY FOUND // DUAL NATURE',
+      symbol: '黒',
+      title: 'DEUX FACES<span>.</span>',
+      text: 'La lumière révèle une part de nous. L’ombre en révèle une autre. Aucune ne raconte toute l’histoire.',
+      status: 'ARCHIVE 03 // L’ÉVEIL'
+    },
+    {
+      label: 'SYSTEM ONLINE // KURO.EXE',
+      symbol: '月',
+      title: 'KURO<span>.EXE</span>',
+      text: 'Le signal est devenu un monde : une communauté, des sons et des créations. La suite appartient à ceux qui entrent.',
+      status: 'CONNEXION ÉTABLIE // BIENVENUE'
+    }
+  ];
+
+  let step = 0;
+  let closed = false;
+  let timer;
+
+  function render() {
+    const chapter = chapters[step];
+
+    label.textContent = chapter.label;
+    scene.innerHTML =
+      '<div class="kuro-story-kanji" aria-hidden="true">' +
+      chapter.symbol + '</div>';
+    title.innerHTML = chapter.title;
+    storyText.textContent = chapter.text;
+    status.textContent = chapter.status;
+    bar.style.width = ((step + 1) / chapters.length * 100) + '%';
+
+    next.textContent = step === chapters.length - 1
+      ? 'ENTRER DANS KURO ↗'
+      : 'CONTINUER L’HISTOIRE ↓';
+  }
+
+  function closeIntro() {
+    if (closed) return;
+    closed = true;
+    clearTimeout(timer);
+
+    try {
+      sessionStorage.setItem('kuroAwakeningSeen', '1');
+    } catch (error) {}
+
+    intro.classList.add('kuro-intro-hidden');
+    intro.style.pointerEvents = 'none';
+    window.setTimeout(() => intro.remove(), 850);
+  }
+
+  next.addEventListener('click', event => {
+    event.preventDefault();
+    event.stopPropagation();
+
     if (closed) return;
 
-    if (step >= chapters.length - 1) {
+    if (step < chapters.length - 1) {
+      step++;
+      render();
+      clearTimeout(timer);
+      timer = window.setTimeout(closeIntro, 15000);
+    } else {
       closeIntro();
-      return;
     }
+  });
 
-    step++;
-    render();
-  }
-
-  next.addEventListener('click', advance);
-  skip.addEventListener('click', closeIntro);
-
-  try {
-    if (sessionStorage.getItem('kuroAwakeningSeen') === '1') {
-      intro.remove();
-      return;
-    }
-  } catch (_) {}
+  skip.addEventListener('click', event => {
+    event.preventDefault();
+    event.stopPropagation();
+    closeIntro();
+  });
 
   render();
-
-  if (reducedMotion) {
-    next.textContent = 'ENTRER DANS KURO ↗';
-    next.addEventListener('click', closeIntro, { once: true });
-  } else {
-    // L'intro ne bloque jamais le visiteur indéfiniment.
-    timer = window.setTimeout(closeIntro, 18000);
-  }
+  timer = window.setTimeout(closeIntro, 20000);
 })();
 </script>
 <!-- ===== END KURO CHAPTER 00 ===== -->
@@ -6320,60 +6400,6 @@ form.addEventListener('submit', e => {
 })();
 </script>
 <!-- END KURO REVEAL -->
-
-<!-- KURO // INTRO CLICK SAFETY FIX -->
-<style>
-  #kuro-awakening {
-    pointer-events: auto !important;
-  }
-
-  #kuro-awakening button {
-    position: relative;
-    z-index: 10;
-    pointer-events: auto !important;
-    touch-action: manipulation;
-  }
-
-  #kuro-awakening.kuro-intro-hidden {
-    pointer-events: none !important;
-  }
-</style>
-
-<script>
-(() => {
-  const intro = document.getElementById('kuro-awakening');
-  if (!intro) return;
-
-  const next = intro.querySelector('#kuro-story-enter');
-  const skip = intro.querySelector('#kuro-story-skip');
-
-  if (intro.dataset.clickSafety === 'true') return;
-  intro.dataset.clickSafety = 'true';
-
-  // Sortie de secours si le script de l'histoire ne répond plus.
-  function emergencyClose() {
-    intro.classList.add('kuro-intro-hidden');
-    intro.style.pointerEvents = 'none';
-
-    try {
-      sessionStorage.setItem('kuroAwakeningSeen', '1');
-    } catch (error) {}
-  }
-
-  if (skip) {
-    skip.addEventListener('click', emergencyClose);
-  }
-
-  if (next) {
-    next.addEventListener('click', () => {
-      if (next.textContent.includes('ENTRER')) {
-        emergencyClose();
-      }
-    });
-  }
-})();
-</script>
-<!-- END KURO INTRO CLICK SAFETY FIX -->
   
 </body>
 </html>
