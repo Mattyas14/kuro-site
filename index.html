@@ -2310,6 +2310,80 @@ body {
 }
 /* ===== FIN DU FIX ===== */
 
+
+/* ===== KURO.EXE — SUBTLE GLITCH ===== */
+
+#accueil.kuro-hero .kuro-hero-title {
+  position: relative;
+  animation: kuro-glitch-idle 5s infinite;
+  text-shadow:
+    1px 0 rgba(255, 20, 60, 0.12),
+    -1px 0 rgba(255, 255, 255, 0.06);
+  will-change: text-shadow;
+}
+
+/* Micro-interférences */
+@keyframes kuro-glitch-idle {
+  0%, 91%, 93%, 100% {
+    text-shadow:
+      1px 0 rgba(255, 20, 60, 0.12),
+      -1px 0 rgba(255, 255, 255, 0.06);
+    transform: translateX(0);
+  }
+
+  91.5% {
+    text-shadow:
+      -2px 0 rgba(255, 20, 60, 0.75),
+      2px 0 rgba(255, 255, 255, 0.25);
+    transform: translateX(1px);
+  }
+
+  92% {
+    text-shadow:
+      2px 0 rgba(255, 20, 60, 0.55),
+      -2px 0 rgba(255, 255, 255, 0.2);
+    transform: translateX(-1px);
+  }
+
+  92.5% {
+    text-shadow:
+      1px 0 rgba(255, 20, 60, 0.12),
+      -1px 0 rgba(255, 255, 255, 0.06);
+    transform: translateX(0);
+  }
+}
+
+/* Glitch renforcé au survol */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  #accueil.kuro-hero .kuro-hero-title:hover {
+    animation: kuro-glitch-hover 0.22s steps(2, end) 3;
+  }
+}
+
+@keyframes kuro-glitch-hover {
+  0%, 100% {
+    transform: translateX(0);
+    text-shadow: 0 0 transparent;
+  }
+
+  50% {
+    transform: translateX(2px);
+    text-shadow:
+      -3px 0 rgba(255, 20, 60, 0.9),
+      3px 0 rgba(255, 255, 255, 0.35);
+  }
+}
+
+/* Respect des préférences de mouvement */
+@media (prefers-reduced-motion: reduce) {
+  #accueil.kuro-hero .kuro-hero-title {
+    animation: none;
+    transform: none;
+    will-change: auto;
+  }
+}
+
+/* ===== END KURO GLITCH ===== */
   
 </style>
 </head>
