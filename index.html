@@ -2511,6 +2511,60 @@ nav a,
 }
 
 /* ===== END KURO INTERACTIVE LIGHTS ===== */
+
+/* ===== KURO — CINEMATIC SECTION REVEAL ===== */
+
+.kuro-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity .7s ease,
+    transform .7s cubic-bezier(.2, .7, .2, 1);
+}
+
+.kuro-reveal.kuro-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ligne rouge sous les titres de section */
+.section h2,
+#projets .project-heading h2 {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.section h2::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  margin-top: 12px;
+  background: linear-gradient(90deg, #ff1937, transparent);
+  box-shadow: 0 0 12px rgba(255, 25, 55, .45);
+  transition: width .8s ease .15s;
+}
+
+.section h2.kuro-line-active::after {
+  width: min(100%, 180px);
+}
+
+/* Respect des préférences de mouvement */
+@media (prefers-reduced-motion: reduce) {
+  .kuro-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .section h2::after {
+    transition: none;
+    width: min(100%, 180px);
+  }
+}
+
+/* ===== END CINEMATIC REVEAL ===== */
   
 </style>
 </head>
