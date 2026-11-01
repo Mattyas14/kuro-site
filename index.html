@@ -2384,6 +2384,133 @@ body {
 }
 
 /* ===== END KURO GLITCH ===== */
+
+/* ===== KURO.EXE — INTERACTIVE LIGHTS ===== */
+
+/* Cartes : projets, univers et contenus */
+#projets .project-card,
+#univers .card,
+#univers .universe-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* Balayage lumineux rouge */
+#projets .project-card::after,
+#univers .card::after,
+#univers .universe-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 25, 55, 0.03) 35%,
+    rgba(255, 25, 55, 0.16) 50%,
+    rgba(255, 25, 55, 0.03) 65%,
+    transparent 100%
+  );
+  transform: translateX(-110%);
+  transition: transform .65s ease;
+}
+
+/* Le contenu reste au-dessus de la lumière */
+#projets .project-content,
+#projets .project-visual,
+#univers .card > *,
+#univers .universe-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Survol des cartes */
+@media (hover: hover) and (pointer: fine)
+       and (prefers-reduced-motion: no-preference) {
+  #projets .project-card:hover::after,
+  #univers .card:hover::after,
+  #univers .universe-card:hover::after {
+    transform: translateX(110%);
+  }
+
+  #projets .project-card:hover,
+  #univers .card:hover,
+  #univers .universe-card:hover {
+    border-color: rgba(255, 25, 55, .65);
+    box-shadow:
+      0 0 0 1px rgba(255, 25, 55, .08),
+      0 10px 35px rgba(255, 0, 40, .10);
+  }
+}
+
+/* Boutons : halo rouge */
+.btn,
+.project-button,
+.project-filter,
+#contact button,
+#contact .btn {
+  transition:
+    color .22s ease,
+    background-color .22s ease,
+    border-color .22s ease,
+    box-shadow .22s ease,
+    transform .22s ease;
+}
+
+@media (hover: hover) and (pointer: fine)
+       and (prefers-reduced-motion: no-preference) {
+  .btn:hover,
+  .project-button:hover,
+  #contact button:hover,
+  #contact .btn:hover {
+    border-color: #ff1937;
+    box-shadow:
+      0 0 12px rgba(255, 25, 55, .22),
+      0 0 28px rgba(255, 25, 55, .10);
+    transform: translateY(-2px);
+  }
+
+  .project-filter:hover {
+    border-color: rgba(255, 25, 55, .7);
+    box-shadow: 0 0 14px rgba(255, 25, 55, .14);
+  }
+}
+
+/* Navigation : petit éclairage au survol */
+nav a,
+.nav a {
+  transition: color .2s ease, text-shadow .2s ease;
+}
+
+@media (hover: hover) and (pointer: fine)
+       and (prefers-reduced-motion: no-preference) {
+  nav a:hover,
+  .nav a:hover {
+    color: #ff526b;
+    text-shadow: 0 0 12px rgba(255, 25, 55, .45);
+  }
+}
+
+/* Accessibilité : pas d'animation imposée */
+@media (prefers-reduced-motion: reduce) {
+  #projets .project-card,
+  #projets .project-card::after,
+  #univers .card,
+  #univers .card::after,
+  #univers .universe-card,
+  #univers .universe-card::after,
+  .btn,
+  .project-button,
+  .project-filter,
+  nav a,
+  .nav a {
+    transition: none !important;
+  }
+}
+
+/* ===== END KURO INTERACTIVE LIGHTS ===== */
   
 </style>
 </head>
