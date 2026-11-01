@@ -2726,7 +2726,9 @@ body::after {
   <!-- Le reste de ton site KURO commence ici -->
 <header>
   <div class="wrap nav">
-    <a class="brand glitch" href="#accueil" aria-label="KURO accueil">KURO <span>| 黒</span></a>
+    <a class="brand" href="#accueil" aria-label="KURO accueil">
+  <img src="kuro-oni.png" alt="KURO" class="kuro-logo">
+</a>
     <nav class="navlinks" id="navlinks" aria-label="Navigation principale">
       <a href="#accueil" class="active">Accueil</a><a href="#univers">Univers</a><a href="#projets">Projets</a><a href="#musique">Musique</a><a href="#discord">Discord</a><a href="#exe">KURO.EXE</a><a href="#rangs">Rangs</a>
     </nav>
@@ -4701,7 +4703,19 @@ form.addEventListener('submit', e => {
   }
 }
 /* ===== END KURO HERO ===== */
- 
+.kuro-logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.25s ease, filter 0.25s ease;
+  filter: drop-shadow(0 0 6px rgba(255, 23, 61, 0.55));
+}
+
+.kuro-logo:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 12px rgba(255, 23, 61, 0.9));
+} 
 </style>
 
 <script>
