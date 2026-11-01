@@ -6076,6 +6076,49 @@ form.addEventListener('submit', e => {
 })();
 </script>
 <!-- ===== END KURO CUSTOM CURSOR ===== -->
+
+<!-- KURO — CINEMATIC REVEAL -->
+<script>
+(() => {
+  const reduceMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  );
+
+  const sections = document.querySelectorAll(
+    'main > .section, body > .section, #univers, #projets, #musique, #discord, #contact'
+  );
+
+  if (reduceMotion.matches || !('IntersectionObserver' in window)) {
+    sections.forEach(section => section.classList.add('kuro-revealed'));
+    document.querySelectorAll('.section h2').forEach(title => {
+      title.classList.add('kuro-line-active');
+    });
+    return;
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      entry.target.classList.add('kuro-revealed');
+
+      entry.target.querySelectorAll('h2').forEach(title => {
+        title.classList.add('kuro-line-active');
+      });
+
+      observer.unobserve(entry.target);
+    });
+  }, {
+    threshold: 0.12
+  });
+
+  sections.forEach(section => {
+    section.classList.add('kuro-reveal');
+    observer.observe(section);
+  });
+})();
+</script>
+<!-- END KURO REVEAL -->
   
 </body>
 </html>
