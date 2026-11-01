@@ -2263,6 +2263,54 @@ body {
 }
 /* ===== END ALIGNEMENT ===== */
 
+/* ===== KURO — FIX CONTENU HERO ===== */
+#accueil.kuro-hero {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding-left: clamp(24px, 8vw, 120px) !important;
+  padding-right: clamp(24px, 8vw, 120px) !important;
+  overflow: hidden;
+}
+
+#accueil.kuro-hero .kuro-hero-content {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  margin: 0 !important;
+  width: 100% !important;
+  max-width: 850px !important;
+  min-width: 0 !important;
+  transform: none !important;
+  box-sizing: border-box !important;
+}
+
+#accueil.kuro-hero .kuro-hero-title {
+  width: 100%;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  box-sizing: border-box;
+}
+
+#accueil.kuro-hero .kuro-hero-description {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  #accueil.kuro-hero {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  #accueil.kuro-hero .kuro-hero-title {
+    font-size: clamp(52px, 14vw, 90px) !important;
+    letter-spacing: -0.07em;
+  }
+}
+/* ===== FIN DU FIX ===== */
+
+  
 </style>
 </head>
 <body>
