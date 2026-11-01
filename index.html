@@ -1100,12 +1100,38 @@ nav a:hover::after {
   }
 }
 
+
 .hero > .wrap {
-  width: min(1120px, calc(100% - 48px));
-  margin-inline: auto;
+  display: block;
+  width: calc(100% - 48px) !important;
+  max-width: 1120px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 0;
+  padding-right: 0;
   position: relative;
+  left: auto;
+  right: auto;
+  transform: none;
+  box-sizing: border-box;
   z-index: 2;
 }
+
+.hero > .wrap h1,
+.hero > .wrap .eyebrow,
+.hero > .wrap p,
+.hero > .wrap .actions,
+.hero > .wrap .hero-meta {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  .hero > .wrap {
+    width: calc(100% - 36px) !important;
+  }
+}
+
 
 .hero h1 {
   font-size: clamp(4rem, 9vw, 8rem) !important;
