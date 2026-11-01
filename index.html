@@ -5738,6 +5738,163 @@ form.addEventListener('submit', e => {
 <!-- END KURO // AWAKENING -->
 <footer><div class="wrap foot"><div><strong>KURO <span class="jp">| 黒</span></strong> — Community • Music • Night</div><div>Fait dans l'ombre. <span class="jp">もっと深くへ。</span></div><div>© <span id="year"></span> KURO. Tous droits réservés.</div></div></footer>
 <div class="toast" id="toast" role="status"></div>
+
+<!-- ===== KURO.EXE // CUSTOM CURSOR ===== -->
+<div id="kuro-cursor" aria-hidden="true">
+  <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+    <circle class="kuro-cursor-ring" cx="24" cy="24" r="12"/>
+    <circle class="kuro-cursor-core" cx="24" cy="24" r="2"/>
+    <path class="kuro-cursor-lines"
+      d="M24 2V14 M24 34V46 M2 24H14 M34 24H46"/>
+    <path class="kuro-cursor-corners"
+      d="M17 8H8V17 M31 8H40V17 M8 31V40H17 M40 31V40H31"/>
+  </svg>
+</div>
+
+<style>
+  /* Curseur KURO : uniquement pour les pointeurs précis */
+  @media (hover: hover) and (pointer: fine)
+         and (prefers-reduced-motion: no-preference) {
+    html.kuro-cursor-enabled,
+    html.kuro-cursor-enabled body,
+    html.kuro-cursor-enabled body a,
+    html.kuro-cursor-enabled body button,
+    html.kuro-cursor-enabled body [role="button"],
+    html.kuro-cursor-enabled body input,
+    html.kuro-cursor-enabled body select,
+    html.kuro-cursor-enabled body textarea,
+    html.kuro-cursor-enabled body label {
+      cursor: none !important;
+    }
+
+    #kuro-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 38px;
+      height: 38px;
+      z-index: 99999;
+      pointer-events: none;
+      opacity: 0;
+      transform: translate3d(-100px, -100px, 0);
+      transition: opacity .18s ease;
+      will-change: transform;
+    }
+
+    #kuro-cursor.is-visible {
+      opacity: 1;
+    }
+
+    #kuro-cursor svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    #kuro-cursor circle,
+    #kuro-cursor path {
+      fill: none;
+      stroke: #ff1937;
+      stroke-width: 1.4;
+      vector-effect: non-scaling-stroke;
+    }
+
+    #kuro-cursor .kuro-cursor-core {
+      fill: #ff1937;
+      stroke: #ff1937;
+    }
+
+    #kuro-cursor .kuro-cursor-lines {
+      stroke-width: 1.8;
+    }
+
+    #kuro-cursor.is-hovering {
+      filter:
+        drop-shadow(0 0 4px rgba(255, 25, 55, .95))
+        drop-shadow(0 0 10px rgba(255, 25, 55, .55));
+    }
+
+    #kuro-cursor.is-hovering svg {
+      transform: scale(1.18);
+    }
+  }
+</style>
+
+<script>
+(() => {
+  const root = document.documentElement;
+  const cursor = document.getElementById('kuro-cursor');
+
+  if (!cursor) return;
+
+  const pointerQuery = window.matchMedia(
+    '(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)'
+  );
+
+  if (!pointerQuery.matches) return;
+
+  let active = false;
+
+  function move(event) {
+    if (event.pointerType === 'touch') return;
+
+    cursor.style.transform =
+      `translate3d(${event.clientX - 19}px, ${event.clientY - 19}px, 0)`;
+
+    cursor.classList.add('is-visible');
+  }
+
+  function hover(event) {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+
+    const interactive = target.closest(
+      'a, button, [role="button"], input, select, textarea, label, summary'
+    );
+
+    cursor.classList.toggle('is-hovering', Boolean(interactive));
+  }
+
+  function leave() {
+    cursor.classList.remove('is-visible', 'is-hovering');
+  }
+
+  function enable() {
+    if (active) return;
+    active = true;
+
+    root.classList.add('kuro-cursor-enabled');
+    document.addEventListener('pointermove', move, { passive: true });
+    document.addEventListener('pointerover', hover, { passive: true });
+    document.addEventListener('pointerout', hover, { passive: true });
+    document.addEventListener('pointerleave', leave);
+  }
+
+  function disable() {
+    if (!active) return;
+    active = false;
+
+    root.classList.remove('kuro-cursor-enabled');
+    cursor.classList.remove('is-visible', 'is-hovering');
+
+    document.removeEventListener('pointermove', move);
+    document.removeEventListener('pointerover', hover);
+    document.removeEventListener('pointerout', hover);
+    document.removeEventListener('pointerleave', leave);
+  }
+
+  if (pointerQuery.addEventListener) {
+    pointerQuery.addEventListener('change', event => {
+      if (event.matches) enable();
+      else disable();
+    });
+  }
+
+  enable();
+})();
+</script>
+<!-- ===== END KURO CUSTOM CURSOR ===== -->
   
 </body>
 </html>
